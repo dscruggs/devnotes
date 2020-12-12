@@ -3,6 +3,7 @@ By Andrew Trask
 
 # Tables of Contents
 ## 1. Introduction 
+- Just need basic math and programming knowledge. Goal is to be as simple as possible with lots of practical coding examples
 
 ## 2. Fundamental Concepts: How do machines learn?
 
