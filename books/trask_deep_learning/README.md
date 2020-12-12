@@ -12,7 +12,7 @@ By Andrew Trask
 
 ## 5. Learning multiple weights at a time: generalizing gradient descent
 
-## 6. Building your first deep nerual newtowrk: introduction to backpropogation
+## 6. Building your first deep neural network: introduction to backpropogation
 
 ## 7. How to picture neural networks: in your head and on paper
 
