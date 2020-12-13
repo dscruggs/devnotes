@@ -6,8 +6,17 @@ By Andrew Trask
 - Just need basic math and programming knowledge. Goal is to be as simple as possible with lots of practical coding examples
 
 ## 2. Fundamental Concepts: How do machines learn?
+- Supervised vs Unsupervised models
+  - **Supervised**: learns to transform one dataset (input) into another dataset (output) using labeled data
+  - **Unsupervised**: Typically groups data, looks for patterns
+- Parametric vs nonparametric learning
+  - **Parametric**: fixed number of parameters
+  - **Non-parametric**: number of parameters varys with the input data, not fixed and can grow
 
 ## 3. Introduction to neural prediciton: forward propogation
+- Basic Neural Network architectures and concepts with single input/output, multi input/output, and multiple layer NNs
+- **Forward Propogation**: Process of passing activations forward in a network. Used to make predictions.
+  - input data -> input layer -> hidden layers -> output
 
 ## 4. Introduction to neural learning: gradient descent
 
