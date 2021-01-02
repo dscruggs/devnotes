@@ -44,8 +44,71 @@
 ## Gradient Descent with Multiple Outputs
 
 ### Single input multiple outputs
-  - you calculate each `delta` the same way and then multiply them all by the same single `input`
+  - you calculate each `delta` the same way (pred - actual) and then multiply them all by the same single `input`
     - this becomes each weight's `weight_delta`
   - the same `stochastic gradient descent` method is used here and for learning across many network architectures
-  - 
+
+## Gradient Descent with Multiple Inputs and Outputs (arbitrarily large networks)
+
+### Multiple Inputs Multiple Outputs
+  - basically just need to calculate delta for each node's prediction for each output, then adjust weights on each node
+    - make predictions, compare to desired outputs, calculate delta from that
+    - take each delta and multiply it by its respective input (do this for each neuron in a fully connected NN)
+    - Example:
+      - a fully connected 3 input 3 output neural network with no hidden layer will have a 3x1 input and output vector and a 3x3 weight vector
+      - will have 3x1 delta vector and take outer product with input vector to get the 3x3 weight_delta matrix to adjust weights by each iteration
+  
+  Code I wrote for generic neural network training using gradient descent:
+  ```python
+  def grad_desc_generalized(inputs,initial_weights,goal_preds,alpha=0.1,max_iter=5000,thresh=0.0000001,verbose=True):
+    '''function to perform gradient descent with an arbitrary number of inputs,outputs, and weights for a fully connected
+    neural network
+    inputs (np.array): inputs to model
+    initial_weights (np.array): initial weights, could be randomized
+    goal_preds (np.array): ground truth output data that will be used for training model
+    alpha (float between 0 and 1): controls learning rate(amount weights adjust each iteration), small 
+    will make convergence slower, large values will possibly make model diverge
+    max_iter (int): max iterations for training
+    thresh (float): error threshold to stop training
+    verbose (bool): to print diagnostic text or not    
+    '''
+    
+    curr_weights = initial_weights
+    
+    for itern_num in range(max_iter):
+        preds = inputs.dot(curr_weights)
+        error = (preds - goal_preds) ** 2
+        
+        if np.average(error) < thresh:
+            break
+            
+        delta = preds - goal_preds
+        weight_deltas = np.outer(inputs,delta)
+        curr_weights = curr_weights - (alpha*weight_deltas)
+        if verbose:
+            print(f'Error: {error}')
+            print(f'Delta: {delta}')
+            print(f'weight_deltas: {weight_deltas}')
+            print(f'weights: {initial_weights}')
+            print(f'curr_weights: {curr_weights}')
+            
+    # return weights from model after training
+    return curr_weights,preds
+  ```
+  
+  ## What do these weights "learn"?
+  
+  - Each weight tries to reduce the error, but in aggregate what do they do?
+  - Example with the MNIST handwritten number images dataset which is common in deep learning tutorials.
+    - say we make a neural network with 784 inputs (1 for each pixel in the images) and 10 outputs (1 for each possibly written number)
+    - each output neuron has 784 weights associated with it
+    - each input neuron has 10 weights it multiplies its input by to the respective outputs
+    - if a weight to an output is high, the network believes that input (in this case pixel) has a high correlation with this output (a given number)
+      - so say pixel 15 has the highest weight for number 2, the network decided the 15th pixel is a great predictor of it being a 2
+    - if you print the weights in this example you can see that the weights around the area where the digits are typically drawn are considered important
+      - this is probably because the pixels outside this area are constant so the model just ignored them
+  - Dot products
+    - dot products are a measure of similarity between two vectors. since we're taking the dot product between the input and weight vectors to get the output, in the MNIST dataset this means an input vector that is not similar to the weights for a 2 will output a small score, and those input vectors that have similar values to the weights will get a high score
+      - not sure if this is generalizeable (input vectors being similar to the weights for an output will give high scores) but makes sense for this example
+  
 
