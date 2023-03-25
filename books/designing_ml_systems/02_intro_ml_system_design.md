@@ -111,4 +111,18 @@ Choosing objective functions to optimize for and guide the learning process is u
 
 #### Decoupling Objectives
 
-This is example text
+When there's conflicting objectives or multiple metrics wanting to be optimized this can pose a challenge for model development. There's a couple options:
+
+- Train one model with a joint loss function
+  - This works but every time you want to play around with the weights of the loss function to optimize the different metrics you have to retrain the whole model
+- Train multiple models. One for each objective. Then combine the results afterwards
+  - This is preferred. Doesn't require retraining the model when weights need to be changed, and if one objective stops being useful or needs to be changed this is an easy swap.
+
+Decoupling objectives makes model development and maintenance easier
+
+## Mind Versus Data
+
+Are data or algorithms more important?
+
+- Most people today think data, but others say data can only do so much and ML algorithm development is the future
+- Most important thing right now is the **right** data. Not necessarily just more of it. Wrong labels / bad data can hurt model performance
