@@ -4,4 +4,4 @@ Project to hold all my notes and learnings from ML resources and work
 
 ## Books to read
 
-- [] Designing Machine Learning Systems
+- [ ] Designing Machine Learning Systems
