@@ -1,10 +1,10 @@
 # Deep Learning
+
 By Ian Goodfellow, Yoshua Bengio, and Aaron Courville
 
 ## Introduction
 
 ### Who Should Read This Book?
-
 
 ## Applied Math and Machine Learning Basics
 
@@ -15,7 +15,6 @@ By Ian Goodfellow, Yoshua Bengio, and Aaron Courville
 ### Numerical Computation
 
 ### Machine Learning Basics
-
 
 ## Deep Networks: Modern Practices
 
@@ -32,7 +31,6 @@ By Ian Goodfellow, Yoshua Bengio, and Aaron Courville
 ### Practical Methodology
 
 ### Applications
-
 
 ## Deep Learning Research
 
@@ -51,4 +49,3 @@ By Ian Goodfellow, Yoshua Bengio, and Aaron Courville
 ### Approximate Inference
 
 ### Deep Generative Models
-
