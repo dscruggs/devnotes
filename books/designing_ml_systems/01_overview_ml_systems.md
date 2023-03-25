@@ -78,4 +78,32 @@ Most applications are in the enterprise world currently, consumer applications a
   - **Complex models must perform significantly better to justify complexity**
 - Computational priorities
   - While building models training time is the bottleneck. But in production inference latency is the bottleneck. Research prioritizes fast training whereas production usually prioritizes fast inference.
-  
+  - **throughput** or the number of queries processed in a certain period of time is the goal in research, in production often **latency** or the time it takes to process one query is more important. Often this can mean only processing one query at a time to speed up latency while slowing down throughput for the benefit of the customer waiting for a prediction.
+  - Use percentiles when quantifying latency, not something like an average. Because the distribution matters if some queries are taking a very long time. A common metric is 90th percentile latency has to be below a certain number
+- Data
+  - Data is often clean in research and so the focus is on the model.
+  - In production most of the time will be spent cleaning and making sure the data is good to use. It's messy, unstructured, and constantly changing.
+- Fairness
+  - Fairness in research is considered after models are made
+  - In production this has to be considered before deployment
+
+- Interpretability
+  - In research again performance is the most important metric
+  - In production explainability is important both to increase trust in ML systems, but also to help debugging model performance and helping reduce biases
+- Discussion
+  - The vast majority of jobs are in production ML applications, not research. So it's better to know that than fully understand ML research
+
+### ML Versus Traditional Software
+
+ML could greatly benefit from more SWE skills in the field. But many challenges in ML are unique to ML and not SWE.
+
+1. In SWE Code and data are treated as separate, and things are kept as modular and separate as possible. In ML, systems are part code, part data, and part artifacts created from both. ML systems can be improved by better code, but also better data
+2. In SWE you only need to test and version code. In ML you need to version data too. Questions: *How do you version large datasets? How do you know if a sample is good or bad for your system? How do you sample to most effectively improve your model?*
+3. The size of ML models in much larger than traditional code due to data and model artifacts (LLMs have billions of parameters and petabytes of training data)
+4. Monitoring and debugging ML systems is significantly more challenging than traditional software
+
+## Summary
+
+- ML can't solve all problems. If it can't solve a whole problem it may be able to solve a part of one
+- ML is different in research and production in terms of stakeholder interests, computational priorities, and data used
+- ML systems are complex, and understanding each part of the stack and how they interact with each other is important
