@@ -1,4 +1,4 @@
-# Chapter 2. Introduction to Machine Learning System Design
+# Chapter 2: Introduction to Machine Learning System Design
 
 This chapter discusses the components that come into play when designing an ML system. ML systems need a business objective to give purpose to why its needed. And requirements need to be made to guide the development of this system. The problem must also be framed in a way that ML can solve.
 

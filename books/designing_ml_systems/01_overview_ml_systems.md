@@ -1,4 +1,4 @@
-# Chapter 1. Overview of ML Systems
+# Chapter 1: Overview of ML Systems
 
 - algorithm only small part of ML system in production
 - other components:

@@ -71,3 +71,248 @@ Many different methods each having their own benefits and drawbacks:
 - Row-major is better for accessing examples, and column-major is better for accessing features
   - row major formats can be very slow when dealing with a large number of features
   - row major is better for doing a lot of writes, column major is better for doing a lot of column-based reads (like ML)
+
+#### Text vs. Binary Formats
+
+- Text is human readable but much more expensive in terms of storage and compute cost
+- Binary is a catchall for non-text storage formats. Programs need to know how exactly to read these
+
+## Data Models
+
+Data models describe how data is represented.
+
+Example for a data model describing a car:
+
+- make
+- model
+- year
+- color
+- price
+
+Alternative data model for a car:
+
+- owner
+- license plate
+- history of registered addresses
+
+How data is represented changes how the system is built. This should be purpose built for why you're using the data both currently and in the future
+
+There's two kinds of models that are mainly used: `relational models` and `NoSQL models`
+
+### Relational Model
+
+Data is organized into relations: each relation is a new set of tuples. Tables are good representations of this where each row makes up a tuple. Relations are unordered, so you should be able to shuffle rows and the relation is still the same.
+
+#### Normalization
+
+There's some forms for normalizing relations such as `first normal form` and `second normal form`, but these aren't discussed in detail here.
+
+`Normalization` is the process of reducing duplicate data and making data changes easier by separating out fields into different relations. For example for a table of books showing title, author, format, publisher, country, etc. having all these fields in the same table can make changes hard (ex: a publisher changes their name, etc.). The downside of this is that data is spread across multiple tables and joins have to be done, which can be expensive for large tables
+
+Query languages are used to retrieve data from relational databases. SQL databases are the most popular. They technically differentiate from relational models in that they can contain duplicates, but this is not an issue.
+
+#### Declarative vs Imperative language
+
+`Declarative` languages (like SQL) have you specify the outputs you want, and the computer/database figures out the steps to retrieve that
+`Imperative` languages (like Python) have you specify the steps for the computer to execute to get you the output you want
+
+SQL, in theory, can be used to solve many problems. But the process of writing long queries is difficult to maintain and follow
+
+Query optimizers handle the process of figuring out how to retrieve data from a query
+
+**Interesting note**: AutoML systems can be thought of as declarative ML systems.
+
+### NoSQL
+
+Relational models can be restrictive for some use cases:
+
+- requires strict schemas
+- schema management is painful
+- executing SQL queries for specialized applications can be tricky
+
+`NoSQL` is any database system that is "not only" SQL. As some NoSQL systems do support relational models.
+
+Two major non-relational models are document and graph models:
+
+#### Document model
+
+- Data comes in self-contained documents and relationships between them are rare.
+- all documents in a document DB are assumed to be encoded in the same format (JSON, string, binary, XML, etc.)
+- each document has a unique key
+- documents are analogous to rows in a relational model, and tables are called collections. This is more flexible because documents can have completely different schemas
+- Document database shift the responsibilty of assumning structures from the application that writes the data to the application that reads the data (this is what is known as "schemaless" architecture, but that's misleading)
+- Document model has better localization than the relational model (no need to look at a bunch of tables)
+- But it's harder to execute joins and queries across documents, and hard to make changes to a schema
+- Because of all the pros and cons, systems like PostGres and MySQL support both document and relational DBs
+
+#### Graph Model
+
+- built around the concept of graphs (nodes and edges) with edges representing relationships between the nodes (objects)
+- the relationships are the priority here over the individual items
+- Makes finding relationships easy but the data must be right for this model
+
+### Structured vs Unstructed Data
+
+- `Structured` data has a predefined structure or "schema" that makes analyzing data easier
+  - disadvantage here is data must conform to this schema, and schema changes can be expensive and difficult
+  - as business requirements change this structure can become too restricting
+- `unstructured` data doesn't commit to a predefined schema. This is usually text, logs, files, images, videos, etc.
+  - even if unstructured data doesn't have schemas it may contain intrinsic patterns that can help extract structure (ex: patterns in text or structure of a document)
+  - unstructured data is more flexible for storage options
+- repo for storing structured data is called a `data warehouse`
+  - typically to store data that's ready to be used
+- repo for storing unstructured data is called a `data lake`
+  - typically used to store unstructured data before processing
+
+## Data Storage Engines and Processing
+
+- Different databases handle the storage and retrieval of data in different ways. There's two main types of databases optimized for different tasks: transactional processing and analytical processing
+
+### Transactional and Analytical Processing
+
+- `Transactions` are any kind of action in an application: tweeting, ordering, uploading a new model, watching a youtube video, etc.
+- Inserted when they are generated, occasionally updated later, and deleted when no longer needed. This is called `Online Transactional Processing (OLTP)`
+  - need to be processed fast since they often involve users. Low latency, High availability needs
+  - Most transactional databases are `ACID: atomicity, consistency, isolation, durability)`
+    - Atomicity: to guarantee all steps in a transaction are completed successfully as a group. If any step fails all steps must also fail
+    - Consistency: all transactions coming through must follow predefined rules (ex: authentication)
+    - Isolation: Guarantee two transactions happening at the same time happen as if they were separate
+    - Durability: once a transaction has been committed, it will remain committed even in the case of system failure
+  - There's also `BASE: Basically Available, Soft state, and Eventual consistency` which is even more vague than ACID. Not all databases need to be ACID
+  - Transactional databases are usually row major format for these requirements. But this isn't efficient for doing data analysis
+- For analytical purpose there's efficient database for this that do something called `Online Analytical Processing (OLAP)
+- Both of these OLAP and OLTP have become outdated
+  - Technology exists that combines them
+  - The data storage and processing layers have been isolated so that the processing of data can be optimized separately for many use cases
+    - Google bigquery, snowflake, teradata are a few examples
+  - "Online" has become a overload term that has many meaning. Today's meanings:
+    - `Online` - data is available immediately for input/output
+    - `Nearline` - data is not immediately available but can be made online quickly without human intervention
+    - `Offline` - data is available later and requires some human intervention to become online
+
+### ETL: Extract, Transform, Load
+
+When data is `extracted` from different sources, it's `transformed` intoed the desired format for the database or data warehouse, and then is `loaded` to the target destination. This process is called `ETL`
+
+ETL is generally the processing and aggregating of data into the shape and format you want for you application, ML or otherwise
+
+#### Extracting
+
+This involves getting all the data you want from all your sources. Data that is malformed or missing should be rejected at this stage and getting this right can save you a lot of work down the line
+
+#### Transforming
+
+This is the most intensive part of the process. This includes joining, cleaning, standardizing, deduping, etc.
+
+#### Loading
+
+This is deciding how and how often to load transformed data into the target destination. This could be a file, database, or data warehouse
+
+#### Evolution of ETL
+
+Companies found keeping data structured on collection difficult as the internet evolved and data became more widespread. This led to the use of data lakes where little preprocessing was done, and then use cases could extract this information and transform it how they wanted.
+
+As data kept growing this became unattractive because searching through massive data stores that have no structure is costly.
+
+Cloud tech and migrations allowed for more standardized data collection and storage practices which allowed schemas to be easier to create and maintain.
+
+Currently there's pros and cons to both models, and vendors like Databricks and Snowflake provide data lakehouses that combine both
+
+## Modes of Dataflow
+
+Data flow is usually not one process but a combination of several that do not share memory. Generally there are three types:
+
+- Data passing through a database
+- Data passing through services using requests such as the requests provided by REST and RPC APIs (POST/GET)
+- Data passing through a real-time transport like Apache Kafka and Amazon Kinesis
+
+### Data Passing Through Databases
+
+- Easiest way to pass data through processes
+- doesn't always work for 2 reasons
+  1. requires both processes to access the same database (this might be infeasible is data is passed between companies or groups)
+  2. requires both processes to access data from the database where reads/writes may be slow. This can harm latency in real-time consumer applications
+
+### Data passing through services
+
+- Can send data directly through a network that connects the two processes
+  - Process **B** -> Process **A**:
+    - Process **A** first sends a request to process **B** that specifies the data **A** needs
+    - Process **B** returns the requested data through the same network
+- This is called a `request-driven` process communication
+- This is tightly coupled with service-oriented architectures. A `service` is a process that can be accessed remotely (e.g. through a network)
+- **B** is exposed to **A** as a service that **A** can send requests to. For **B** to be able to request data from **A**, **A** will need to be exposed to **B** as a service
+
+#### Microservice architecture
+
+Two services in communication with each other can be run by different companies in different applications. Two services in communication with eachother can also be parts of the same application. Structuring an application as separate services allows each component to be developed, tested, and maintained independently of eachother. This is called a `microservice architecture`
+
+ML context example of microservice architecture:
+
+- Price optimization problem for a company like Uber
+  - Driver management service
+    - predicts how many drivers will be available in the next minute in a given area
+  - Ride management service
+    - predicts how many rides will be be requested in the next minute in a given area
+  - Price optimization service
+    - predicts the optimal price from each ride. The price for a ride should be low enough for riders to be willing to pay, yet high enough for drivers to be willing to drive and for the company to make a profit. This will pull from the driver and ride management services to get the supply and demand side of the equation.
+
+#### Data Passing Protocols
+
+`REST: Representational State Transfer` and `RPC: Remote Procedure Call` are two of the most popular style of requests for passing data between networks
+
+- REST was designed for requests over networks
+- RPC tries to make a remote network service look the same as calling a function or method in your programming language
+- REST is dominant style for public APIs, RPCs are used for services within the same organizations, typically within the same data center
+- Implementations of REST architecture are known as RESTful APIs/applications. HTTP is an implementation of REST
+
+### Data Passing Through Real-Time Transport
+
+Services passing data directly to eachother can become slow and error-prone as the number of services increases. This is because the service requesting data has to wait (it's `synchronous`) and if the service sending the data is down, this breaks the requesting service as well.
+
+#### Event-Driven Architecture
+
+A broker to coordinate data passing among services allows each service to only have to communicate with the broker instead of all of the other services. A database can technically be a broker but this is too slow for most real-time use cases.
+
+Services can broadcast data to a broker and other services can request this data from the broker to retrieve it in real time.
+
+Two most common types of real time transport are:
+
+- `pubsub` - Publish-subscribe
+  - Any service can publish to different topics in real time transport, and any service that subscribes to a topic can read all the events in that topic. Publishing services don't care how that data is used.
+  - There's often a time limit on how long data is retained before being deleted or moved to permanent storage
+  - Apache Kafka and Amazon Kinesis are examples of this
+- `Message Queue`
+  - an event often has intended consumers, and the message queue is responsible for getting the message to the right consumers
+  - Apache RocketMQ and RabbitMQ are examples of this
+
+#### Event vs Request Driven Architectures
+
+- Request driven architecture works well when systems rely more on logic than on data
+- Event driven works better for systems that are data heavy (probably ML)
+
+### Batch Processing vs Stream Processing
+
+#### Batch Processing
+
+- Jobs kicked off periodically, often on historical data and often only 1x or a couple times a day
+- Mapreduce and Spark are frameworks to help make this more efficient
+
+#### Stream Processing
+
+- This is doing computations on real-time data that is being streamed through services like amazon kinesis or apache kafka
+- This can be done in batch jobs, but it is much more frequent (every 5 minutes)
+- Can also be done on request or event driven basis
+- Gives low latency when done right because data can be processed as soon as its generated
+- Many people believe Spark or MapReduce means that streaming is slower than batch processing but this isn't true
+  - Parallelization and distributed computing can be done to make it even faster than batch processing, and database read/write are not necessary
+  - `Stateful computation` is the strength of stream processing
+    - batch jobs that want to compute data over the last 30 days need to look back 30 days every time it runs, whereas a streaming process could just add on the latest transaction without having to look back, preventing redundancy
+
+- Batch processing is usually used to compute features that change less frequently (1x a day), and these are called `static features`
+- Stream processing is used to compute features that change quickly and are called `streaming features` or `dynamic features` (ex: # of rides in last 2 minutes, how many rides will finish in next 2 minutes, price of last 10 rides in the area, etc.)
+  - This process can be very difficult and requires complex queries with joins and aggregations along different dimensions. There are specialized tools such as Apache Flink, KSQL, and Spark Streaming
+  - Stream processing is difficult because the data coming in is unbounded and comes in at variable rates
+  - Steram processing is easier to convert to batch processing than batch process is to convert to stream processing
+
+Most problems require you to use both batch and streaming features, so you need infrastructure that lets you to process both streaming and batch data and join them together to feed into your ML model.
