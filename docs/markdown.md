@@ -1,6 +1,11 @@
-# greek symbols
+# Markdown References
 
-### Lowercase
+## Quick Links
+
+[Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+## Greek Symbols
+
  |Upper|Lower| Name    |
  |------|------|---------|
  | |  α   | Alpha   |
@@ -26,4 +31,4 @@
  | Φ |  φ   | Phi     |
  | |  χ   | Chi     |
  | Ψ |  ψ   | Psi     |
- | Ω |  ω   | Omega   | 
+ | Ω |  ω   | Omega   |
