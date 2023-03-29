@@ -41,7 +41,19 @@ By Chip Huyen
 - Discussed batch vs stream processing and the requirements and pros and cons of each
   - Discusses batch vs stream features and how ML systems usually require both in real-world use cases
 
-## Chapter 4: Training Data
+## [Chapter 4: Training Data](04_training_data.md)
+
+If your training data is bad, your model won't be able to perform well (no matter how awesome it is)
+
+Topics include:
+
+- Sampling methods for training, both probabilistic and nonprobabilistic
+- Labeling techniques and how to look for pre-existing "natural labels"
+  - also how to generate labels using different methods of algorithmic supervision
+- Class imbalance. The problems with it and how to handle it
+  - basically make sure to pay attention to class-specific metrics, not just overall model metrics.
+  - regression problems can be bucketed like classification problems to evaluate the full distribution of predictions!
+- Data augmentation techniques and data synthesis
 
 ## Chapter 5: Feature Engineering
 
