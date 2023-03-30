@@ -55,16 +55,37 @@ Topics include:
   - regression problems can be bucketed like classification problems to evaluate the full distribution of predictions!
 - Data augmentation techniques and data synthesis
 
-## Chapter 5: Feature Engineering
+## [Chapter 5: Feature Engineering](05_feature_engineering.md)
 
-## Chapter 6: Model Development and Offline Evaluation
+Features are everything to a model. They need to be chosen well, and time and effort is well worth spending here.
 
-## Chapter 7: Model Deployment and Prediction Service
+Topics include:
 
-## Chapter 8: Data Distribution Shifts and Monitoring
+- There's no foolproof answers to how to engineer good features, but several methods are discussed
+  - experimentation, intuition, and learning from experts helps
+  - kaggle competitions can offer good insight into feature engineering tactics
+- SMEs are important to model development but they are often not engineers. So develop workflows in ways that help them contribute
+- Discusses common feature engineering operations
+- Discusses data leakage and how to avoid it
+- Best practices for feature engineering
+  - split data by time when training instead of random split when applicable
+  - only oversample after splitting
+  - scale and normalize only after splitting
+  - use statistics from the training set only during training to scale features and fill in missing values
+  - Understand how your data is generated, collected, and processed to uncover possible leakage sources
+  - keep track of data's lineage
+  - understand feature importance
+  - use features that generalize well
+  - remove no longer useful features from your models
 
-## Chapter 9: Continual Learning and Test in Production
+## [Chapter 6: Model Development and Offline Evaluation](06_model_development.md)
 
-## Chapter 10: Infrastructure and Tooling for MLOps
+## [Chapter 7: Model Deployment and Prediction Service]()
 
-## Chapter 11: The Human Side of Machine Learning
+## [Chapter 8: Data Distribution Shifts and Monitoring]()
+
+## [Chapter 9: Continual Learning and Test in Production]()
+
+## [Chapter 10: Infrastructure and Tooling for MLOps]()
+
+## [Chapter 11: The Human Side of Machine Learning]()
