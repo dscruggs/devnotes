@@ -104,9 +104,21 @@ Topics include:
   - Cloud vs on the edge
 - Hardware and software optimization for ML models
 
-## [Chapter 8: Data Distribution Shifts and Monitoring]()
+## [Chapter 8: Data Distribution Shifts and Monitoring](08_data_shifts_and_monitoring.md)
 
-## [Chapter 9: Continual Learning and Test in Production]()
+This chapter is all about understand how and why ML systems fail and how to detect and fix them
+
+Topics include:
+
+- types of failure (software and ML-specific failure)
+- Causes of ML specific failure
+- Data Distribution Shifts
+  - what types there are
+  - how to detect shifts
+  - how to address shifts (retraining mostly)
+- ML System Monitoring and Observability
+
+## [Chapter 9: Continual Learning and Test in Production](09_continual_learning.md)
 
 ## [Chapter 10: Infrastructure and Tooling for MLOps]()
 

@@ -214,3 +214,172 @@ The time scale window of the data we look at affects the types of shifts we can 
 `Cumulative statistics` are continually updated with more data
 
 Cumulative statistics can obscure what happens in a specific time period
+
+Many companies use the distribution of the training data as the base distribution and monitor the production data distribution at a certain granularity level such as hourly and daily.
+
+The shorter the time window, the faster you can detect changes. But also the smaller your sample size, and so the distribution may not actually be a representative sample comparable to your training data
+
+You can merge statistics from shorter time periods into longer time periods. Such as hourly to daily, daily to monthly, etc.
+
+More advanced monitoring platforms attempt root cause analysis feature that automatically analyzes statistics across various time window sizes to detect exactly the time window where a change in data happened
+
+### Addressing Data Distribution Shifts
+
+Many companies periodically retrain regardless of metrics to address shifts. The frequency of retraining varies by use case
+
+To many a model work with a new distribution in production there's 3 main approaches:
+
+- train models using massive datasets
+  - popular in research. This hopes that the training data is large enough that whatever new data is encountered will likely come from this distribution
+- adapt a trained model to a target distribution without requiring new labels
+  - this isn't very popular in industry and is underresearched
+- retrain your model using the labeled data from the target distribution
+  - this is the most popular in industry
+  - you can retrain from scratch on old and new data, or continue training the existing model on new data (fine tuning)
+
+#### Model Retraining
+
+Retraining Questions:
+
+- How to retrain?
+  - `stateless retraining` - retrain from scratch
+  - `stateful retraining` - continue training the model from last checkpoint
+- What data to train on?
+  - Need to pick a period of time to use data from to retrain. May require experimentation to decide
+
+You can think of the data distribution shift problem as a less extreme case of adapting a model to a new domain. And retraining can be thought of a transfer learning
+
+Consider `feature stability` when building a model to make it more resistant to drift. Fast changing features are a sign you'll need to retrain more often. You can bucket fast-changing features to slow them down, but that may hurt the predictive power
+
+Deploy a separate model for a fast changing subset of data (ex: housing price calculator, you may want to separate out new york or san francisco so you don't have to retrain models for rural arizona so often)
+
+Remember: not all ML problems are related to the ML part. Make sure to look out for human error
+
+## Monitoring and Observability
+
+`Monitoring` is the act of tracking, measuring, and logging different metrics to help determine when something goes wrong
+
+`Observability` means setting up a system in a way that gives us visibility into our system to help investigate what went wrong
+
+observability also can be called `instrumentation` where examples are setting up timers for functions, counting NaNs in features, tracking how inputs are transformed through your systems, logging unusual events such as unusually long inputs, etc. Observability is part of monitoring because without some level of observability monitoring is impossible
+
+Monitoring is all about metrics.
+
+Software metrics for ML systems can be thought of in three main categories of tracking:
+
+- network
+  - requests refused, latency, etc.
+- machine
+  - memory/compute capacity, etc.
+- application
+  - resource utilization, traffic, etc.
+
+A classic metric is `uptime` which means the proportion of time a system is available with reasonable performance to users. Amazon guaruntees 99.99% uptime for EC2
+
+However, even if the system is running, for ML systems if the predictions are garbage users won't care. There needs to be ML specific metrics considered
+
+### ML-Specific Metrics
+
+#### Monitoring Accuracy-related Metrics
+
+If your system gets any kind of user feedback for the predictions it makes, you should log and track it (click, hide, purchase, upvote, etc.)
+
+Even if the feedback can't be used to infer natural labels directly, it can still help you detect changes in model performance
+
+You can engineer your system to collect more useful user feedback (upvote/downvote) to at least guide future labeling efforts
+
+#### Monitoring Predictions
+
+This is the most common artifact to monitor. Summary stats are easy to monitor and predictions are easy to visualize since they're usually 1 dimensional
+
+You can monitor predictions for distributional shifts. You can also run two-sample tests easily on them, and this can help you infer changes in the data distributions
+
+You can monitor predictions for anything odd happening, and this can help you catch things more quickly than accuracy-related metrics
+
+#### Monitoring Features
+
+You can track changes in features, both for inputs and intermediate transformations from raw inputs to final features
+
+Feature monitoring is appealing compared to raw data because its more structured
+
+`Feature validation` can be used to check for changes in expected schemas for features, usually made from common sense or training data. also called `table testing` or `table validation`
+
+- check if the min, max, median values are within an acceptable range
+- check if the values of a feature satisfy a regular expression format
+- if all the values of a feature belong to a predefined set
+- if the values of a feature are always greater than the values of another feature
+
+Great Expectations and Deequ are open source libraries that help you do basic feature validation
+
+You can use two-sample tests to see if the distribution of feature values or a set of features have changed
+
+Four major concerns whene feature monitoring:
+
+- A company might have hundreds of models in production, and each model uses hundreds if not thousands of features
+  - computing even simple summary stats for these features ever hour can be expensive in both compute and memory. This can also add to user latency by increasing system load
+- While tracking features is useful for debugging, its not very useful for detecting model performance degradation
+  - an individual feature's minor changes might not harm model performance, so you may get false alarms and alert fatigue
+- Feature extraction is often done in multiple steps and using multiple libraries
+  - even if you detect an issue with a feature it might be impossible to detect whether this change is caused by a change in the underlying input distribution or whether its caused by an error in the processing steps
+- The schema that your features follow can change over time
+  - if you don't have a way to version your schemas and map each of your features to its expected schema you may get alerts from a mismatched schema rather than data distribution change or issue
+
+#### Monitoring Raw Inputs
+
+Raw inputs are not easier to monitor than features because they can come from multiple sources in different formats
+
+Many ML workflows make it impossible for ML engineers to access raw data, and raw data is often managed by a separate team
+
+If raw data is monitored its usually done by the data platform team and not ML engineers, so this book doesn't discuss
+
+### Monitoring Toolbox
+
+Measuring, tracking, and interpreting metrics for a complex system is a nontrivial task. and tools are used to do this
+
+#### Logs
+
+Traditional software uses logs to record runtime events. Ex: container startup time, memory requirements, when a function is called, outputs of functions, crashes, stack traces, error codes, etc.
+
+In the modern day with so many services a process may hop to 20-30 places before an error occurs. The hard part today isn't finding when something happened, but where the problem was
+
+We want to make it as easy as possible to find errors later when something goes wrong. In microservice architecture this practice is called `distributed tracing` which means giving each process a unique ID so that when something goes wrong the error message will have that ID to search through logs
+
+ML models can be used to analyze logs because the problem of going through this vast data is hard. They can classify or flag logs to be looked at
+
+You can process logs in batch or real-time and look for specific events to alert errors
+
+#### Dashboards
+
+Dashboards to visualize metrics are critical for monitoring: a picture is worth 1000 words
+
+Dashboards make monitoring accessible to non-engineers, to show metrics and monitoring to stakeholders and the dev team
+
+Too many metrics on a dashboard can be counterproductive, a phenomenon called `dashboard rot`. It's important to choose wisely what to show to make sure your signal-to-noise ratio is high
+
+#### Alerts
+
+Its important to alert the right people when the system detects something suspicious. An alert consists of three components:
+
+- An alert policy
+  - the condition for the alert. A metric breaching a threshold for some duration is a common flag
+- Notification channels
+  - These describe who is to be notified when the condition is met. It can show up in monitoring tools like Cloudwatch, but you also may want to configure email or other means of communication in case you aren't checking alerts
+- A description of the alert
+  - this helps the alerted person understand whats going on and know where to look
+  - provide as much detail as possible and try to make it actionable (provide a runbook or possible mitigating actions)
+
+Be careful with alerts (both with who to send them to and how many to send). alert fatigue is real
+
+### Observability
+
+Monitoring helps you figure out *when* things go wrong. But there's no guarantee it will tell you *what* went wrong. That's where observability becomes important
+
+Software systems are complex enough to no longer allow the breaking apart of systems to figure out what's going on. Engineers need to rely on external outputs and observable system design to figure out problems
+
+Observability is the concept drawn from control theory to bringing "better visibility into understanding the complex behavior of software using outputs collected from the system at runtime". `Telemetry` is the term for system outputs collected at runtime (logs and metrics)
+
+Observability is about instrumenting your system in a way to ensure that sufficient information about a system's runtime is collected and analyzed to be able to figure out what went wrong without going into the codebase and pushing new code
+
+In the ML world this means monitoring would be showing aggregate metrics over time, observability means that you could say for what inputs and subgroups performance degrades on (ex: you should be able to say "show me all wrong predictions in the last hour and group them by zip code" in your logs). To do this you need to log with tags and keywords that are useful
+
+In ML observability encompasses interpretibility. Being able to understand what went wrong with a model helps with understanding how it makes predictions and fix them
