@@ -80,7 +80,29 @@ Topics include:
 
 ## [Chapter 6: Model Development and Offline Evaluation](06_model_development.md)
 
-## [Chapter 7: Model Deployment and Prediction Service]()
+Covers ML model and development processes
+
+Topics include:
+
+- how to select ML models for a task
+  - things to consider when selecting a model, ensembling, etc.
+- Experiment tracking and versioning
+- Parallelism in training
+  - data, model parellelism
+- How to evaluate model performance offline
+  - setting baselines, evaluation methods
+
+## [Chapter 7: Model Deployment and Prediction Service](07_model_deployment.md)
+
+Deploying models is an engineering challenge, not an ML challenge. Deployment is not the end of an ML project, only the beginning to a whole new host of work
+
+Topics include:
+
+- ML deployment myths
+- Different ways to deploy a model
+  - batch vs online
+  - Cloud vs on the edge
+- Hardware and software optimization for ML models
 
 ## [Chapter 8: Data Distribution Shifts and Monitoring]()
 
