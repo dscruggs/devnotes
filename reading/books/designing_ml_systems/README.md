@@ -120,6 +120,29 @@ Topics include:
 
 ## [Chapter 9: Continual Learning and Test in Production](09_continual_learning.md)
 
-## [Chapter 10: Infrastructure and Tooling for MLOps]()
+This is all about how to update models in production in response to changes in data or environment and how to evaluate them
+
+Topics include:
+
+- Stages a company may go through in modernizing ML infrastructure
+- How often should I update my models?
+  - as much as possible and as much as the performance gains justify
+- Discusses different deployment strategies to test a new model in production
+- Discusses contextual bandits a little bit
+
+## [Chapter 10: Infrastructure and Tooling for MLOps](10_infrastructure_and_tooling.md)
+
+Bringing ML models to production is an infrastructure problem. The right tools and infrastructure set up is critical to success.
+
+Topics include:
+
+- Different layers of infratructure neede for ML systems
+  - storage and compute
+    - mostly commoditized in the cloud at this point
+  - development environment
+    - standardize as much as you can, close the gap between dev and prod
+  - Resource Management and Orchestration
+    - Airflow, Argo, Metaflow, etc.
+  -
 
 ## [Chapter 11: The Human Side of Machine Learning]()
