@@ -143,6 +143,22 @@ Topics include:
     - standardize as much as you can, close the gap between dev and prod
   - Resource Management and Orchestration
     - Airflow, Argo, Metaflow, etc.
-  -
+  - ML platforms
+    - Deployment
+    - Model store
+    - feature store
+  - Build vs Buy when it comes to ML
 
-## [Chapter 11: The Human Side of Machine Learning]()
+## [Chapter 11: The Human Side of Machine Learning](11_human_side_of_ml.md)
+
+ML systems aren't just technical. Like all software, they involve humans: business decision makers, users, developers
+
+Topics include:
+
+- User experience issues with ML systems
+  - probabilistic results lead to inconsistent experience
+  - "mostly correct" results can be problematic if users can't fix those results
+- How to structure ML teams and considerations to do so
+  - cross functional vs data scientists owning everything
+- Responsible AI
+  - all about mitigating bias and increasing transparency
