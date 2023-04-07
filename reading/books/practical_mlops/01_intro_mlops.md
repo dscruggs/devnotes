@@ -64,3 +64,42 @@ MLops needs:
   - efficient using humans and technology solutions
   - Ticket systems, spreadsheets, etc.
   - Breaking down problems into small, discreet chunks of work so incremental progress can occur
+
+A well maintained CI/CD system is a form of investment in the future of the team and company. All members of the team should help out with this
+
+MLOps requires all the needs of DevOps with extra considerations for the data and models
+
+## An MLOps Hierarchy of Needs
+
+DevOps -> Data Automation -> Platform automation -> MLOps
+
+### Implementing Devops
+
+You need Continuous integration first. No automated testing, no moving forward with devops
+
+Python project scaffold (assumes linux system):
+
+- MakeFile
+  - runs "recipes" via the Make system which comes with Unix-based OS
+  - Does not replace a virtual environment in python, it just runs commands
+  - Key terms
+    - `Make install` installs software
+    - `Make lint` checks for syntax errors
+    - `Make test` runs tests
+  - keeps track of complicated build steps that are hard to remember and type out correctly
+- requirements.txt
+  - used by pip installation tools, can have 1 or more of these
+- Source code and tests
+  - add a source file and a test file. make the first test super easy, use pytest
+- Virtual environment
+  - venv
+
+Scaffolding will allow you to set up continuous integration:
+
+1. Use make install to install the libraries for your project
+2. run make lint to lint your project
+3. Run make test to test your project
+
+This is straightforward to integrated this process with a remote SaaS build server once working locally
+
+### CI With GitHub Actions
