@@ -4,26 +4,38 @@ By Noah Gift and Alfredo Deza
 
 [Accompanying Github Repo](https://github.com/paiml/practical-mlops-book)
 
-# [Chapter 1: Introduction to MLOps](./01_intro_mlops)
+## [Chapter 1: Introduction to MLOps](./01_intro_mlops.md)
 
-# Chapter 2: MLOps Foundations
+Discusses the importance of using DevOps principles in the context of ML
 
-# Chapter 3: MLOps for Containers and Edge Devices
+The solution to the added complexity of ML systems is to embrace automation
 
-# Chapter 4: Continuous Delivery for Machine Learning Models
+Topics include:
 
-# Chapter 5: AutoML and KaizenML
+- What is MLOps?
+- Devops principles and best practices
+- Python CICD scaffold for projects
+  - My implementation: <https://github.com/dscruggs/devopsscaffold>
+- MLOps components and best practices
 
-# Chapter 6: Monitoring and Logging
+## Chapter 2: MLOps Foundations
 
-# Chapter 7: MLOps for AWS
+## Chapter 3: MLOps for Containers and Edge Devices
 
-# Chapter 8: MLOps for Azure
+## Chapter 4: Continuous Delivery for Machine Learning Models
 
-# Chapter 9: MLOps for GCP
+## Chapter 5: AutoML and KaizenML
 
-# Chapter 10: Machine Learning Interoperability
+## Chapter 6: Monitoring and Logging
 
-# Chapter 11: Building MLOps Command Line Tools and Microservices
+## Chapter 7: MLOps for AWS
 
-# Chapter 12: Machine Learning Engineering and MLOps Case Studies
+## Chapter 8: MLOps for Azure
+
+## Chapter 9: MLOps for GCP
+
+## Chapter 10: Machine Learning Interoperability
+
+## Chapter 11: Building MLOps Command Line Tools and Microservices
+
+## Chapter 12: Machine Learning Engineering and MLOps Case Studies
