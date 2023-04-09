@@ -212,4 +212,4 @@ This creates a centralized place for data to ensure consistent file dependencies
 
 #### Kaizen starts with a simple question: can we do better? If so, what should we do to get better this week or today? Finally, how can we apply Kaizen to our machine learning projects?
 
-I can definitely get better at containers and using them for ML specifically. Kaizen should be a mindset to never settle for "good enough" when it comes to wasted effort and manual tasks in software and ML
+Kaizen should be a mindset to never settle for "good enough" when it comes to wasted effort and manual tasks in software and ML. All steps of ML shouldn't be accepted at face value as needing to be long and drawn out and nonstandardized
