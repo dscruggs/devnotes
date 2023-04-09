@@ -18,7 +18,16 @@ Topics include:
   - My implementation: <https://github.com/dscruggs/devopsscaffold>
 - MLOps components and best practices
 
-## Chapter 2: MLOps Foundations
+## [Chapter 2: MLOps Foundations](./02_mlops_foundations.md)
+
+Gives foundational knowledge to be able to deploy ML into production
+
+Topics Include:
+
+- Cloud computing and Linux terminal
+- DevOps/CICD
+- Math and ML fundamentals
+- Good examples of cloud deployments for ML using cloud shell and CICD pipelines
 
 ## Chapter 3: MLOps for Containers and Edge Devices
 
