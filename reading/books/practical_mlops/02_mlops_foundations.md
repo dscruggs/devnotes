@@ -183,36 +183,33 @@ Setting up Azure Cloud Shell with github: <https://www.youtube.com/watch?v=3vtBA
 
 ## Exercises
 
-- [ ] Run a hello world Python GitHub project and check it out and run your tests on
-all three clouds: AWS, Azure, and GCP.
-- [ ] Make a new Flask application that serves out a “hello world” type route using
-AWS Elastic Beanstalk you think other people would find helpful and put the
-code into a GitHub repo along with a screenshot of it serving out a request in the
-GitHub README.md. Then, create a continuous delivery process to deploy the
-Flask application using AWS CodeBuild.
-- [ ] Fork this repository that contains a Flask machine learning application and
-deploy it with continuous delivery on AWS using Elastic Beanstalk and Code
-Pipeline.
-- [ ] Fork this repository that contains a Flask machine learning application and
-deploy it with continuous delivery on GCP using Google App Engine and Cloud
-Build or Cloud Run and Cloud Build.
-- [ ] Fork this repository that contains a Flask machine learning application and
-deploy it with continuous delivery on Azure using Azure App Services and Azure
-DevOps Pipelines.
-- [ ] Use the Traveling Salesman code example and port it to work with coordinates
-you grab from an API, say all of the best restaurants in a city you want to visit.
+- [ ] Run a hello world Python GitHub project and check it out and run your tests on all three clouds: AWS, Azure, and GCP.
+- [ ] Make a new Flask application that serves out a “hello world” type route using AWS Elastic Beanstalk you think other people would find helpful and put the code into a GitHub repo along with a screenshot of it serving out a request in the GitHub README.md. Then, create a continuous delivery process to deploy the Flask application using AWS CodeBuild.
+- [ ] Fork this repository that contains a Flask machine learning application and deploy it with continuous delivery on AWS using Elastic Beanstalk and Code Pipeline.
+- [ ] Fork this repository that contains a Flask machine learning application and deploy it with continuous delivery on GCP using Google App Engine and Cloud Build or Cloud Run and Cloud Build.
+- [ ] Fork this repository that contains a Flask machine learning application and deploy it with continuous delivery on Azure using Azure App Services and Azure DevOps Pipelines.
+- [ ] Use the Traveling Salesman code example and port it to work with coordinates you grab from an API, say all of the best restaurants in a city you want to visit.
 You will never think about vacation the same again.
-- [ ] Using the TensorFlow Playground, experiment with changing the hyperparameters
-across different datasets as well as problem types. Can you identify optimal
-configurations of hidden layers, learning rate, and regularization rate for different
-datasets?
+- [ ] Using the TensorFlow Playground, experiment with changing the hyperparameters across different datasets as well as problem types. Can you identify optimal configurations of hidden layers, learning rate, and regularization rate for different datasets?
 
 ## Critical Thinking Discussion Questions
 
 #### A company specializing in GPU databases has a key technical member advocating they stop using the cloud because it would be much more practical to buy their GPU hardware since they run it 24/7. This step would also allow them to get access to specialized GPUs much more quickly than they are available. On the other hand, another critical technical member who has all of the AWS certifications has promised to get him fired if he dares to try. He claims that they have already invested too much into AWS. Argue for or against this proposal
 
-- A “Red Hat Certified Engineer” has built one of the most successful data centers
-in the Southeast for a company with only 100 employees. Even though the company is an e-commerce company and not a cloud company, he claims this gives the company a huge advantage. On the other hand, a “Google Certified Architect” and “Duke Data Science Masters” graduate claims the company is in a risky position by using a data center they own. They point out that the company keeps losing data center engineers for Google and has no disaster recovery plan or fault tolerance. Argue for or against this proposal.
-- What are the key technical differences between AWS Lambda and AWS Elastic Beanstalk including the pros and cons of each solution?
-- Why would a managed file service like EFS on AWS or Google Filestore be helpful in a real-world MLOps workflow in corporate America?
-- Kaizen starts with a simple question: can we do better? If so, what should we do to get better this week or today? Finally, how can we apply Kaizen to our machine learning projects?
+I think in this case it probably makes sense to get off the cloud. If they have full usage of their GPUs and they have GPU databases which require specialized GPUs, then likely cloud won't give them the same benefits that it would give to ML practitioners or other applications where usage is variable and deployment and scalability is critical.
+
+#### A “Red Hat Certified Engineer” has built one of the most successful data centers in the Southeast for a company with only 100 employees. Even though the company is an e-commerce company and not a cloud company, he claims this gives the company a huge advantage. On the other hand, a “Google Certified Architect” and “Duke Data Science Masters” graduate claims the company is in a risky position by using a data center they own. They point out that the company keeps losing data center engineers for Google and has no disaster recovery plan or fault tolerance. Argue for or against this proposal
+
+I think this company would probably benefit from moving to the cloud considering their specialization is in e-commerce and not data center management. They're risking their whole operation by maintaining a data center on their own especially if they're losing employees. Moving to the cloud will likely free up engineering time and make future deployments easier.
+
+#### What are the key technical differences between AWS Lambda and AWS Elastic Beanstalk including the pros and cons of each solution?
+
+I've never used beanstalk but from what I can tell it's a Platform as a Service as opposed to Lambda which is just for running specific function calls and quick actions. Elastic Beanstalk seems like its the whole package with load balancing and auto scaling for your application, and you can use containers here for the environment. Lambda is better for atomic actions that may be compute intensive that you can call asynchronously. I used it for a backend for my FastAPI app and it worked great. Basically lambda is easier to set up but if you want the whole application on one service you'll want to use Elastic Beanstalk. You don't need to choose one or the other though you could deploy an application on EB and then use lambda functions for some parts of it or have an API on lambda set up that can be called by your EB application
+
+#### Why would a managed file service like EFS on AWS or Google Filestore be helpful in a real-world MLOps workflow in corporate America?
+
+This creates a centralized place for data to ensure consistent file dependencies in deployments and if data is stored here make sure its consistent across workflows. Everyone will be working with the same files instead of everyone using their own local filestores
+
+#### Kaizen starts with a simple question: can we do better? If so, what should we do to get better this week or today? Finally, how can we apply Kaizen to our machine learning projects?
+
+I can definitely get better at containers and using them for ML specifically. Kaizen should be a mindset to never settle for "good enough" when it comes to wasted effort and manual tasks in software and ML
