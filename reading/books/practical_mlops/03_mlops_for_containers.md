@@ -121,3 +121,107 @@ grype python:3.8 | grep High
 # automation to allow failure on high vulnerabilities
 grype --fail-on=high centos:8
 ```
+
+### Serving a Trained Model Over HTTP
+
+Container to serve a trained model over an HTTP API using Flask
+
+```docker
+FROM python:3.9
+
+# version using a deprecated label schema convention. Use https://github.com/opencontainers/image-spec
+ARG VERSION
+LABEL org.label-schema.version=$VERSION
+
+COPY ./requirements.txt /webapp/requirements.txt
+WORKDIR /webapp
+RUN pip install -r requirements.txt
+COPY webapp/* /webapp
+# runs the app
+ENTRYPOINT [ "python" ]
+CMD [ "app.py" ]
+```
+
+Project directory structure:
+
+```
+Dockerfile
+/webapp
+    app.py # app
+    model.joblib # compressed model
+```
+
+Running:
+
+```bash
+# building image
+docker build --build-arg VERSION=AutoML_287f444c -t flask-predict .
+
+# checking for image
+docker images flask-predict
+
+#running the image
+docker run -p 5000:5000 -d --name flask-predict flask-predict
+
+# open localhost or curl [IP address]:[port_number] to verify it worked
+
+# any tool that can send info over HTTP can process a response
+```
+
+### Edge Devices
+
+Cost of chips and hardware decreasing has increased the feasibility of ML compute on device
+
+The closer the computation to the user, the faster the lower the latency
+
+#### Coral
+
+platform that helps build local on-device inferencing
+
+Lots of examples for using it to build models for edge computing
+
+#### Azure Percept
+
+Another up and coming edge platform
+
+`TFHub` has lots of models to be download, some work on the edge
+
+### Containers for Managed ML Systems
+
+You can list and monetize containerized models on Amazon Sagemaker (probably similar for google and azure)
+
+### Build Once, Run Many MLOps Workflow
+
+You can make base containers for all kinds of workflows, and maybe even productize them
+
+## Exercises
+
+- [x] (Probably never doing this) Recompile a model to work with the Coral Edge TPU from TFHub.
+- [x] (Probably never doing this) Use the MobileNet V2 model to perform inference on other objects and get accurate results.
+- [ ] Create a new container image, based on the Flask example, that serves a model and that provides examples on a GET request to interact with the model. Create another endpoint that provides useful metadata about the model.
+- [ ] Publish the newly created image to a container registry like Docker Hub.
+
+## Critical Thinking Discussion Questions
+
+#### Would it be possible to use a container to perform online predictions with an edge TPU device like Coral? How? or Why not?
+
+You could definitely do this if you have natural labels, but it would be very challenging because you'd need all data and retraining pipelines fully automated since you wouldn't be able to retrain with the cloud. There's also the issue that training requires a lot more compute and memory typically than inference. Probably better to just train offline and push periodic updates
+
+#### What is a container runtime, and how does it relate to Docker?
+
+A container runtime is the platform that runs containers. Red hat has one too but Docker is the most popular and best for cross-platform use
+
+#### Name three good practices when creating a Dockerfile
+
+- Lint your dockerfiles (`hadolint`)
+- Run vulnerability scans on base images used (`grype`)
+- Keep dockerfiles small (this makes them fast to use, lightweight to change, and readable. Combine RUN commands when possible)
+
+#### What are two critical concepts of DevOps mentioned in this chapter? Why are they useful?
+
+1. Containers. They're useful because they make your code run the same no matter where you use it, since its running in a constant environment than you can version like the rest of your code, and publish to a container hub to be used by multiple projects and services
+2. Not really sure the other one, there was a lot on containers so you could probably split some of the things mentioned there into multiple devops concepts. Both continuous integration and continuous delivery were mentioned with regard to containers (linting and docker hub)
+
+#### Create a definition, in your own words, of what the “edge” is. Give some ML examples that can be applied
+
+`Edge` is any device or hardware that users are running models on directly. A great example is FaceID on Iphone. But great use cases are those with very low latency requirements or ones that don't require a lot of compute or those that have high security requirements

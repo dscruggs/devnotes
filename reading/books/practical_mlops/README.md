@@ -29,7 +29,18 @@ Topics Include:
 - Math and ML fundamentals
 - Good examples of cloud deployments for ML using cloud shell and CICD pipelines
 
-## Chapter 3: MLOps for Containers and Edge Devices
+## [Chapter 3: MLOps for Containers and Edge Devices](./mlops_for_containers.md)
+
+Gives GREAT overview on docker containers and some good examples of container workflows for ML
+
+Topics Inlcude:
+
+- Containers overview
+  - dockerfiles, images, containers, image / dockerfile hubs
+- Container best practices
+  - linting and vulnerability scans
+- Serving a container over HTTP (flask) example
+- Some edge device stuff
 
 ## Chapter 4: Continuous Delivery for Machine Learning Models
 
