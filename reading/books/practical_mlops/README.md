@@ -29,7 +29,7 @@ Topics Include:
 - Math and ML fundamentals
 - Good examples of cloud deployments for ML using cloud shell and CICD pipelines
 
-## [Chapter 3: MLOps for Containers and Edge Devices](./mlops_for_containers.md)
+## [Chapter 3: MLOps for Containers and Edge Devices](./03_mlops_for_containers.md)
 
 Gives GREAT overview on docker containers and some good examples of container workflows for ML
 
@@ -42,9 +42,19 @@ Topics Inlcude:
 - Serving a container over HTTP (flask) example
 - Some edge device stuff
 
-## Chapter 4: Continuous Delivery for Machine Learning Models
+## [Chapter 4: Continuous Delivery for Machine Learning Models](./04_continuous_delivery_for_ml.md)
 
-## Chapter 5: AutoML and KaizenML
+You should strive for shipping models with very high confidence and in a resilient set of steps. This is what this chapter is about
+
+Topics include:
+
+- Packaging models and code in containers in an automated fashion (CI/CD)
+  - great example for Github Actions
+- pipelines
+- Model deployment methodologies
+- Deployed model tests
+
+## [Chapter 5: AutoML and KaizenML](./05_automl_kaizenml.md)
 
 ## Chapter 6: Monitoring and Logging
 
