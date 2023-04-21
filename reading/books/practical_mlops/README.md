@@ -56,6 +56,20 @@ Topics include:
 
 ## [Chapter 5: AutoML and KaizenML](./05_automl_kaizenml.md)
 
+AutoML is essential for MLOps because it automates the model building process and gives the best results. KaizenML is the process of improving and automating every other part of the pipeline
+
+AutoML will not replace data scientists, but allow them to focus on the execution and high-level aspects of ML projects
+
+Don't resist change for your ego, you don't need to build it to use it
+
+Topics Include:
+
+- AutoML
+- KaizenML
+- AutoML on various cloud platforms
+- Open source AutoML
+- Model explainability frameworks
+
 ## Chapter 6: Monitoring and Logging
 
 ## Chapter 7: MLOps for AWS
