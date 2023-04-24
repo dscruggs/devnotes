@@ -6,7 +6,7 @@ Links to any notes I took on GitHub while reading can be accessed by clicking on
 
 Progress:
 
-- :memo: - To do
+- :date: - To do
 - :blue_book: - In Progress
 - :heavy_check_mark: - Complete
 
@@ -48,7 +48,7 @@ Progress:
 
 | Book | Progress | Summary | Link |
 |:-----|:--------:|:----------|-----:|
-| Building Data Intensive Applications | :memo: | | [Link](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) |
+| Building Data Intensive Applications | :date: | | [Link](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) |
 
 ### MLOps
 
@@ -56,5 +56,5 @@ Progress:
 |:-----|:--------:|:----------|-----:|
 | [Designing Machine Learning Systems](./designing_ml_systems) | :heavy_check_mark: | Good high level book that connects a lot of concepts for building ML systems. No exercises or many specifics. For those who already know ML algorithms | [Link](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) |
 | [Practical MLOps](./practical_mlops) | :blue_book: |  | [Link](https://www.oreilly.com/library/view/practical-mlops/9781098103002/) |
-| Machine Learning Design Patterns | :memo: |  | [Link](https://www.oreilly.com/library/view/machine-learning-design/9781098115777/) |
-| Machine Learning Engineering in Action | :memo: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
+| Machine Learning Design Patterns | :date: |  | [Link](https://www.oreilly.com/library/view/machine-learning-design/9781098115777/) |
+| Machine Learning Engineering in Action | :date: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
