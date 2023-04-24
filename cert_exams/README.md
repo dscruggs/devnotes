@@ -4,5 +4,5 @@ Notes on various certification exams I've taken or am in the process of studying
 
 | Certification | Certification Link | Earned |
 |:--------------|:------------------:|:------:|
-| AWS Certified Cloud Practitioner | [Link](https://aws.amazon.com/certification/certified-cloud-practitioner/) | :heavy_check_mark: |
-| [AWS Certified Machine Learning - Specialty](./aws_machine_learning.md) | [Link](https://aws.amazon.com/certification/certified-machine-learning-specialty/) | :heavy_check_mark: |
+| AWS Certified Cloud Practitioner | [Link](https://aws.amazon.com/certification/certified-cloud-practitioner/) | :white_check_mark: |
+| [AWS Certified Machine Learning - Specialty](./aws_machine_learning.md) | [Link](https://aws.amazon.com/certification/certified-machine-learning-specialty/) | :white_check_mark: |
