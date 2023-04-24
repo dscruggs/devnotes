@@ -4,6 +4,12 @@ This is where I keep notes on all machine-learning related books I read.
 
 Links to any notes I took on GitHub while reading can be accessed by clicking on a book title. Links to purchase or a free PDF (if available) are included
 
+Status:
+
+- :memo: - To do
+- :blue_book: - In Progress
+- :heavy_check_mark: - Complete
+
 ## Algorithms
 
 ### Basic AI/ML

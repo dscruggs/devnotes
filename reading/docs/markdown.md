@@ -3,6 +3,7 @@
 ## Quick Links
 
 [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[Markdown Emojis List](https://gist.github.com/rxaviers/7360908)
 
 ## Greek Symbols
 
