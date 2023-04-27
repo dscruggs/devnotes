@@ -70,7 +70,7 @@ Topics Include:
 - Open source AutoML
 - Model explainability frameworks
 
-## Chapter 6: Monitoring and Logging
+## [Chapter 6: Monitoring and Logging](./06_monitoring_logging.md)
 
 ## Chapter 7: MLOps for AWS
 

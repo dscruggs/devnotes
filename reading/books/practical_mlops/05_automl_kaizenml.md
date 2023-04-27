@@ -117,12 +117,24 @@ There's open source frameworks you can use to build your own capabilties:
 
 #### Why is AutoML only part of the automation story with modern machine learning?
 
+AutoML automates the model creation using clean data. It does nothing to automate the data engineering, business processes, model metrics tracking and monitoring, or any of the other parts that go into building and maintaining ML models. That's where KaizenML comes in.
+
 #### How could the NIH (National Institutes of Health) use a Feature Store to increase the speed of medical discoveries?
+
+NIH could store features used for past medical discoveries as starting points for testing new medicines and methods.
 
 #### By 2025, what parts of machine learning will be fully automated and what aspects will not? By 2035, what parts of machine learning will be fully automated and what factors will not?
 
+By 2025 I think we could see the automation of building the code or configurations of most components of ML systems using something like ChatGPT, but it will still have to be fit to specific use cases and data. By 2035 I could see fully integrated SaaS platforms that are point and click and you're able to do automated data engineering, model building, monitoring, and retraining without any knowledge of the ML algorithms or data engineering. I think it would still take a lot of configuration, though a lot of that could be automated. The future of ML is knowing how to build and manage these pipelines and organize buisness units and metrics to take advantage of ML use cases.
+
 #### How could vertically integrated AI platforms (chips, frameworks, data, and more) give particular companies a competitive advantage?
+
+It allows full optimization of algorithms and data to increase performance, and allows for feedback loops where those companies can deploy models and collect data to improve future models. This is how many companies like Google, Facebook, Amazon, Microsoft, and Apple have such a large advantage.
 
 #### How does the chess software industry provide insights into how AI and humans work together for improved outcomes in solving problems for AutoML?
 
+The chess software industry shows that humans augmented with AI tooling can outperform AI alone for many tasks, and this is likely the future that will exist for AutoML. Humans are great at making high level, long term decisions, and AI is great at doing lots of quick computations and finding patterns in data. This combination can solve much more together than apart.
+
 #### How does a data-centric approach differ from a model-centric approach to machine learning? How about a KaizenML approach where data, software, and modeling are all treated as equally important?
+
+A data-centric approach differs from model-centric in that data-centric invests all its resources into improving the quality and quantity of data available for models. The model-centric approach is focusing on building new algorithms and optimizing existing algorithms to get performance gains. From the human standpoint we have a lot more to offer on the data side since capturing and curating good datasets is still something machines can't really do in an automated fashion for many use cases. Business needs, future plans, cost, and strategy all come into play when deciding how to capture and build datasets. Model building can already pretty much be automated once the data is in a good place by AutoML. KaizenML considers all parts important. The data should be good, the software should be automated and maintainable, and the modeling should be accurate, explainable, and easy to upgrade and redeploy. It's the best of both worlds of the two approaches that seeks to always improve in all aspects of the ML system.
