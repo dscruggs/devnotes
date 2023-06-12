@@ -6,3 +6,4 @@ Notes on various certification exams I've taken or am in the process of studying
 |:--------------|:------------------:|:------:|
 | AWS Certified Cloud Practitioner | [Link](https://aws.amazon.com/certification/certified-cloud-practitioner/) | :white_check_mark: |
 | [AWS Certified Machine Learning - Specialty](./aws_machine_learning.md) | [Link](https://aws.amazon.com/certification/certified-machine-learning-specialty/) | :white_check_mark: |
+| [Azure AI Engineer Associate](./azure_ai_engineer.md) | [Link](https://learn.microsoft.com/en-us/certifications/azure-ai-engineer/) | In Progress |
