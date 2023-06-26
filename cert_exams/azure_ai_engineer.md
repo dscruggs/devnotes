@@ -150,7 +150,86 @@ A cloud-scale search solution that uses cognitive services to extract insights f
   - determine key phrases from documents
 - `knowledge stores` can persist insights from enrichment pipelines for further analysis and integrations into data pipelines
 
-### Computer Vision
+### Azure Cognitive Services for Language
+
+#### Text Analysis
+
+Basically their NLP module. Areas include:
+
+- `Language detection` - determining the language in which text is written.
+  - Confidence scores indicate level of confidence on 0-1. Multi-lingual documents will give an answer on which language is the most prevelant, but confidence will be lower
+  - items that lanuage is ambiguous or there are errors will return **NaN** for the score and **(Unknown)** for the language
+- `Key phrase extraction` - identifying important words and phrases in the text that indicate the main points.
+- `Sentiment analysis` - quantifying how positive or negative the text is.
+  - could be positive, negative, or mixed. Gives scores 0-1 for each and then gives an overall sentiment prediction
+- `Named entity recognition` - detecting references to entities, including people, locations, time periods, organizations, and more.
+  - **Entities:** Person, Location, DateTime, Organization, Address, Email, URL
+  - gives confidence scores for each. Response is a list for each document
+- `Entity linking` - identifying specific entities by providing reference links to Wikipedia articles.
+  - gives confidence score w/ luink to wikipedia
+
+For each of these `Documents` are a collection of phrases you can pass to the language detection model. Document size must be under 5120 characters, and collections can only be 1000 IDs
+
+#### Language Understanding
+
+`Ocp-Apim-Subscription-Key` is used for the REST API
+
+- Need to define intents, utterances. Every model needs a None utterance to capture possible user submissions that require no action (like "hello")
+- `Entities` can be used to give context to utterances (like dates, times, locations, etc.). There are prebuilt ones in Azure or you can build your own. **list** entities can be made that have a specific set of values (like days of the week)
+
+Process to build a model:
+
+1. Train a model to learn intents and entities from sample utterances.
+2. Test the model interactively or using a testing dataset with known labels
+3. Deploy a trained model to a public endpoint so client apps can use it
+4. Review predictions and iterate on utterances to train your model
+
+- `Summarization` can be used in both documents (extractive) and conversations (converational)
+- `Named Entity Recognition` is a thing
+- `Personally Identifiable Information Detection`
+- `Sentiment Analysis`
+
+Can train custom models for `Conversational Language Understanding`, `NER`, `text classification`, `Question Answering`
+
+Need **kind** (model type), **parameters** like projectname and deploymentname or modelversion, and **analysis input** being the actual data predicted on
+
+Can use containers
+
+#### Translation
+
+- `Language Detection` - same as text analysis, I'm not sure if its as robust
+- `Translation` - can translate into multiple languages at once and returns as list
+  - Options:
+    - `word alignment` shows a mapping of which characters in the original text map to which characters in the translated text
+    - `sentence length` returns length of both the source and translated sentences
+    - `profanity filtering` can be done by setting the option to **NoAction** (translate as is), **Deleted** (remove them), or **Marked** (puts asterisk on them)
+  - Can train a custom model if you have enough specific business terms or language to learn
+
+- `Transliteration` - converts things like japanese and others into latin text
+
+### Azure Cognitive Serivces for Speech
+
+- `Speech to text`: An API that enables speech recognition in which your application can accept spoken input.
+  - **Speech to text** is standard, **Speech to text Short Audio** is optimized for short audio clips (60 seconds or less)
+  - need to pass a `SpeechConfig` object which is a location and key for the resource
+  - An optional `AudioConfig` object can also be passed to specify the input. By default its the default system microphone but can be another input or an audio file. These two combined are a `SpeechRecognizer` object.
+- `Text to speech`: An API that enables speech synthesis in which your application can provide spoken output.
+  - **text to speech** is standard, **text to speech long audio** is optimized for short audio clips (60 seconds or less)
+  - default output is speakers, but can be changed with `AudioConfig`. `SpeechConfig` has the location and key. These are used to make a `SpeechSynthesizer` Object
+  - Can set audio format and voices used (there's lists of standard and neural voices to choose from)
+  - `Speech Synthesis Markup Language (SSML)` can be used to modify how the voice comes out in ways like tone, pronunciation, pausing, or even insert other speech or audio. This would be done on the text you're having read
+- `Speech Translation`: An API that you can use to translate spoken input into multiple languages.
+  - Similar to speech recognition, but there's additional config for source and target languages in a `SpeechTranslationConfig`
+  - Speech to text or text to speech is available. Can also do Speech to speech
+    - `Event-based synthesis`: need to create an event handler for the TranslationRecognizer object's Synthesizing event and then use the GetAudio() method of the result parameter to retrieve to bytestream of the translated audio. SDK will have ways to implement in docs
+    `Manual Synthesis`: You can just use the TranslationRecognizer to translate audio into text in one or more languages, and then you can use a SpeechSynthesizer to synthesize the audio
+
+- `Speaker Recognition`: An API that enables your application to recognize individual speakers based on their voice.
+- `Intent Recognition`: An API that integrates with the **Language Understanding** service to determine the semantic meaning of spoken input.
+
+You need a location (EastUS) and a key for the assigned resource to use this with an SDK.
+
+### Azure Cognitive Services for Vision
 
 #### Tiers / Pricing
 
