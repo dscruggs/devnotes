@@ -41,6 +41,8 @@ My notes are messy and intended for personal use. Here's a high-level summary fr
   - Identify areas where you need more study and allocate additional time accordingly.
   - Take practice exams to assess your readiness and identify areas for improvement.
 
+My notes:
+
 ## Azure Cognitive Services
 
 |Language| Speech |Vision |Decision|
@@ -141,6 +143,38 @@ Azure cloud service for delivering conversational AI solutions, or bots.
 - `Bot Framework SDK` can be used to make bots using code
 - `Bot Framework Composer` can be used to make bots using a GUI
 
+- Bot templates
+  - empty bot (basic skeleton bot)
+  - Echo bot (repeats back messages)
+  - Core Bot (can integrate w/ language understanding service)
+
+- Terms
+  - **Activities** which are events like a user joining or receiving a message
+  - ***Turn** is a two way exchange between the user and bot
+  - **Process Activity** is called to notify the bot of actions
+  - **Turn Handler** method handles and calls logic from actions
+  - **Activity Handlers** are event methods that can be overriden to handle different activities
+  - **Dialogs** are complex patterns for handling stateful, multi-turn convos
+
+- Azure resource creation
+  - Develop bot
+  - Register and Azure App
+  - Create bot application service
+  - Prepare bot for deployment w/ config files and dependencies
+  - deploy bot as weeb app
+
+- `Bot Framework Emulator` for testing bot locally
+- `Bot Framework Composer` IDE for building bots, very visual. Has embedded web chat for teaching bot there
+
+- `Power Virtual Agents` is a no code chatbot building service, but some features require using the Bot Framework Composer to integrate.
+
+- Text, buttons, images, and cards can be implemented on a bot
+
+- dialog elements:
+  - Recognizer determines user intent
+  - Trigger responds to a detected intent
+  - Language Generator formulates output from the bot to the user
+
 #### Azure Cognitive Search
 
 A cloud-scale search solution that uses cognitive services to extract insights from data and documents. Can ingest and index data from various sources
@@ -231,6 +265,47 @@ You need a location (EastUS) and a key for the assigned resource to use this wit
 
 ### Azure Cognitive Services for Vision
 
+#### Image Analysis
+
+- Use cases:
+  - `Description and tag generation` - determining an appropriate caption for an image, and identifying relevant "tags" that can be used as keywords to indicate its subject.
+  - `Object detection` - detecting the presence and location of specific objects within the image.
+  - `Face detection` - detecting the presence, location, and features of human faces in the image.
+  - `Image metadata`, color, and type analysis - determining the format and size of an image, its dominant color palette, and whether it contains clip art.
+  - `Category identification` - identifying an appropriate categorization for the image, and if it contains any known landmarks.
+  - `Brand detection` - detecting the presence of any known brands or logos.
+  - `Moderation rating` - determine if the image includes any adult or violent content.
+  - `Optical character recognition` - reading text in the image.
+  - `Smart thumbnail generation` - identifying the main region of interest in the image to create a smaller "thumbnail" version.
+
+- Color Scheme Detection colors:
+  - black, blue, brown, gray, green, orange, pink, purple, red, teal, white, and yellow
+
+#### Video Analyzer for Media
+
+- Use Cases
+  - `Facial recognition` - detecting the presence of individual people in the image. This requires Limited Access approval.
+  - `Optical character recognition` - reading text in the video.
+  - `Speech transcription` - creating a text transcript of spoken dialog in the video.
+  - `Topics` - identification of key topics discussed in the video.
+  - `Sentiment` - analysis of how positive or negative segments within the video are.
+  - `Labels` - label tags that identify key objects or themes throughout the video.
+  - `Content moderation` - detection of adult or violent themes in the video.
+  - `Scene segmentation` - a breakdown of the video into its constituent scenes.
+
+Can create custom models for:
+
+- People, Language, Brands, Animated Characters
+
+Need to index it before analyzing
+
+#### Training a Custom Vision Service
+
+- Can use the `Custom Vision portal` or the Custom Vision rest API or SDK, or a combination
+  - has smart labeling options
+- Writing code with the SDK and APIs allows you to automate the training process
+- Labeling tools are in Azure Machine Learning Studio and the Microsoft Visual Object Tagging Tool is useful for tagging as well
+
 #### Tiers / Pricing
 
 - Free
@@ -239,10 +314,72 @@ You need a location (EastUS) and a key for the assigned resource to use this wit
 - S3
 - Standard
 
-#### Image Analysis API
+#### Face Service
 
-- Color Scheme Detection colors:
-  - black, blue, brown, gray, green, orange, pink, purple, red, teal, white, and yellow
+Use Cases:
+
+- `Face detection` - for each detected face, the results include an ID that identifies the face and the bounding box coordinates indicating its location in the image.
+- `Face attribute analysis` - you can return a wide range of facial attributes, including:
+  - Head pose (pitch, roll, and yaw orientation in 3D space)
+  - Glasses (NoGlasses, ReadingGlasses, Sunglasses, or Swimming Goggles)
+  - Blur (low, medium, or high)
+  - Exposure (underExposure, goodExposure, or overExposure)
+  - Noise (visual noise in the image)
+  - Occlusion (objects obscuring the face)
+- `Facial landmark location` - coordinates for key landmarks in relation to facial features (for example, eye corners, pupils, tip of nose, and so on)
+- `Face comparison` - you can compare faces across multiple images for similarity (to find individuals with similar facial features) and verification (to determine that a face in one image is the same person as a face in another image)
+- `Facial recognition` - you can train a model with a collection of faces belonging to specific individuals, and use the model to identify those people in new images.
+
+#### Reading Text
+
+Options:
+
+- The Read API:
+  - Use this API to read small to large volumes of text from images and PDF documents.
+  - This API uses a newer model than the OCR API, resulting in greater accuracy.
+  - The Read API can read printed text in multiple languages, and handwritten text in English.
+  - The initial function call returns an asynchronous operation ID, which must be used in a subsequent call to retrieve the results.
+  - Has over 160 languages
+
+- The Image Analysis API:
+  - Currently still in preview, with reading text functionality added version 4.0.
+  - Use this API to read small amounts of text from images.
+  - Returns contextual information, including line number and position.
+  - Results are returned immediately (synchronous) from a single function call.
+  - Has functionality for analyzing images past extracting text, including detecting content (such as brands, faces, and domain-specific content), describing or categorizing an image, generating thumbnails and more.
+
+#### Form Recognizer
+
+- `Document analysis models`: which take an input of JPEG, PNG, PDF, and TIFF files and return a JSON file with the location of text in bounding boxes, text content, tables, selection marks (also known as checkboxes or radio buttons), and document structure.
+
+- `Prebuilt models`: which detect and extract information from document images and return the extracted data in a structured JSON output. Form Recognizer currently supports prebuilt models for several forms, including:
+  - W-2 forms
+  - Invoices
+  - Receipts
+  - ID documents
+  - Business cards
+
+- `Custom models`: custom models extract data from forms specific to your business. Custom models can be trained by calling the Build model API, or through Form Recognizer Studio
+- The file size must be less than 500 MB for paid (S0) tier and 4 MB for free (F0) tier
+- The total size of the training data set must be 500 pages or less
+- Form Recognizer Studio for easier training
+
+### Azure Cognitive Search
+
+- Creates indexes for data and allows complex queries on it
+
+- Query process:
+  - query parsing
+  - Lexical analysis
+  - document retrieval
+  - scoring/ranking
+
+- Projections
+  - `Object projections` are JSON representations of the indexed documents.
+  - `File projections` are JPEG files containing image data extracted from documents.
+  - `Table projections` create a relational schema for the extracted data.
+
+`AML Skills` can be defined as custom for Azure Search and used with a web service endpoint
 
 ## Azure Machine Learning
 
@@ -262,3 +399,12 @@ Azure MLOps Platform
 ## Cost
 
 - `Cost Analysis` tab shows cost for various services incurred, included Cognitive Services
+
+## Need to learn
+
+- Azure COntent Moderator
+- Personalizer
+- Azure Metrics Advisor
+- Azure Immersive Reader
+- Azure Video Indexer
+-
