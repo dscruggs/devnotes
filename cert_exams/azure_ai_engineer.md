@@ -400,11 +400,3 @@ Azure MLOps Platform
 
 - `Cost Analysis` tab shows cost for various services incurred, included Cognitive Services
 
-## Need to learn
-
-- Azure COntent Moderator
-- Personalizer
-- Azure Metrics Advisor
-- Azure Immersive Reader
-- Azure Video Indexer
--
