@@ -72,6 +72,14 @@ Topics Include:
 
 ## [Chapter 6: Monitoring and Logging](./06_monitoring_logging.md)
 
+Monitoring and logging is the foundation of MLOPs. It allows quick fixes and finding where bottlenecks are for improvements. It allows data-driven evaluation of current systems.
+
+Topics include:
+
+- logging in python
+  - you can log at different levels to only see what logs you're interested in at a given time
+- logging/monitoring in cloud services
+
 ## Chapter 7: MLOps for AWS
 
 ## Chapter 8: MLOps for Azure
