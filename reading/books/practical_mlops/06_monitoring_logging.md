@@ -4,7 +4,7 @@ It's important when thinking about logging not only to capture the right things 
 
 It takes work to make good monitoring and logging. And likely no one will appreciate great logs until something breaks.
 
-## Observability for Clou MLOps
+## Observability for Cloud MLOps
 
 `Amazon Cloudwatch`, `Google Cloud Operations Suite`, `Azure Monitor` are all cloud monitoring solutions
 
@@ -61,3 +61,50 @@ Log levels:
 3. warning
 4. error
 5. critical
+
+`The bus test` - if you can get hit by a bus today, and everything still works tomorrow and those around you can pick up the slack, it's a good piece of software
+
+## Model Monitoring Basics
+
+There's a few good metrics to capture for systems:
+
+- `Counter`: counting items (empty values, nonnull values, etc.)
+- `Timer`: timing how long actions take
+- `Value`: Values are helpful for debugging and giving texture to timers and counters
+
+"Strong foundations enable strong results"
+
+## Exercises
+
+- [ ] Use a different dataset and create a drift report with violations using AWS Sage‐Maker.
+- [ ] Add Python logging to a script that will log errors to STDERR, info statements toSTDOUT, and all levels to a file.
+- [ ] Create a time-series dataset on Azure ML Studio.
+- [ ] Configure a dataset monitor in Azure ML Studio that will send an email when a drift is detected beyond the acceptable threshold.
+
+## Critical Thinking Discussion Questions
+
+#### Why might it be desirable to log to multiple sources at the same time?
+
+Different applications may use the output of logs for different purposes. For examples you may want errors and debugging to go to one place, but standard system output or messages for users to go to the front end
+
+#### Why is it critical to monitor data drift?
+
+Garbage in garbage out. If the data no longer accuractely reflects what the model was trained on, it's time to retrain the model.
+
+#### Name three advantages of using logging facilities versus print() or echo statements
+
+- Print and echo can be easily lost and are only good in the moment. Logs can be stored for later reference.
+- Logs can be given at various levels and can be sent to various sources with ease whereas print statements can only go to the console.
+- Print statements require a lot of code changes. Many libraries have logging built in that you can take advantage of so you don't need to print
+
+#### List the five most common log levels, from least to most verbose
+
+1. debug
+2. info
+3. warning
+4. error
+5. critical
+
+#### What are three common metric types found in metric-capturing systems?
+
+Couner, timer, values
