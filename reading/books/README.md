@@ -57,4 +57,4 @@ Progress:
 | [Designing Machine Learning Systems](./designing_ml_systems) | :white_check_mark: | Good high level book that connects a lot of concepts for building ML systems. No exercises or many specifics. For those who already know ML algorithms | [Link](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) |
 | [Practical MLOps](./practical_mlops) | :blue_book: |  | [Link](https://www.oreilly.com/library/view/practical-mlops/9781098103002/) |
 | Machine Learning Design Patterns | :date: |  | [Link](https://www.oreilly.com/library/view/machine-learning-design/9781098115777/) |
-| Machine Learning Engineering in Action | :date: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
+| Machine Learning Engineering in Action | :blue_book: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
