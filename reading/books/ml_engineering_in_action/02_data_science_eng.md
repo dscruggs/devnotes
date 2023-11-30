@@ -53,3 +53,19 @@ Selected principles:
 - embrace and expect change
 
 ### Communication and Cooperation
+
+Core tenets of ML development are focused on people
+
+1. Collaborative involvement between ML team and the business is key
+2. Communication within the ML team is critical
+
+- lone wolf mentality leads to a lot of rework or frustration from the business unit
+- frequent demos to business users as well as internal code reviews and demonstrations on how changes will affect data is very important
+
+### Embracing and expecting change
+
+Change will almost always happen in ML projects. Build a project architecture that supports rapid iteration and modifications
+
+## Foundation of ML Engineering
+
+Devops is the foundation. Lots of similarities with extra complexity for ML. Great chart in the book on this

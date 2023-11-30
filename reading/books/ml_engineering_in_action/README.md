@@ -33,6 +33,24 @@ Topics include:
 
 Covers differences between data scientist and ML engineer, and gives strategies from software engineering to run successful ML projects
 
+ML Engineering can be thought of as a trinity of core concepts:
+
+- Technology (tools, frameworks, algorithms)
+- People (collaborative work, communication)
+- Process (software dev standards, experimentation rigor, agile methods)
+
+ML Engineering is all about keeping things as simple as possible to solve a given problem
+
 Topics include:
 
--  
+- What is ML engineering
+- Agile for ML
+- Devops vs MLOps
+
+## [Chapter 3: Planning and Scoping a Project](./03_planning_project.md)
+
+Discusses planning and efficient solution evaluation methods for ML projects
+
+Topics include:
+
+-
