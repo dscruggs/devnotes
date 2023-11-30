@@ -44,7 +44,7 @@ The beginning of an ML project starts with an idea. That idea can have many mean
 
 There's a venn diagram with little overlap at the start of a project between business and DS team understanding of the project. **It's the job of the DS team lead and project manager to widen the overlap before any discussion of technical details**
 
-**False Assumptions to Challenge in Planning**
+`False Assumptions to Challenge in Planning`
 
 - Assumption of Business Knowledge
   - ML teams are often insulated and don't share intricate business knowledge that many execs and leaders take for granted
