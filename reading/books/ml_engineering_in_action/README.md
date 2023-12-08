@@ -51,6 +51,12 @@ Topics include:
 
 Discusses planning and efficient solution evaluation methods for ML projects
 
+The most important points here are to have clear communication with the business, especially in the early phases. Focus on the *what* and *why* during planning, and timebox your research and experiments to arrive at a working, practical solution as quickly as possible.
+
 Topics include:
 
--
+- How to plan out a project
+- How to approach research
+- How to approach experimentation and work estimation
+
+## [Chapter 4: Communication and Logistics of Projects](./04_comms_logistics.md)
