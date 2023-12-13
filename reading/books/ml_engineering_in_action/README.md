@@ -60,3 +60,15 @@ Topics include:
 - How to approach experimentation and work estimation
 
 ## [Chapter 4: Communication and Logistics of Projects](./04_comms_logistics.md)
+
+Goes over the structure of meetings and communication involved with projects. Major points are around clear and open communication is key, constant feedback is key, and you should tie meetings to milestones and with a clear agenda to not waste peoples time
+
+Topics include:
+
+- questions to ask the business during planning
+- meeting structure and goals during a project
+- approaching experimentation communication
+- dealing with business rules and project changes
+- explaining ML topics to laymen
+
+## [Chapter 5: Experimentation in Action](./05_experimentation.md)
