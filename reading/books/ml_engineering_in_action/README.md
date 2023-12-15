@@ -71,4 +71,14 @@ Topics include:
 - dealing with business rules and project changes
 - explaining ML topics to laymen
 
-## [Chapter 5: Experimentation in Action](./05_experimentation.md)
+## [Chapter 5: Planning and researching an ML project](./05_experimentation.md)
+
+Goes over in a deeper fashion the process of researching, planning, and doing experimentation using a time-series example
+
+Topics include:
+
+- approaches to research and planning prior to experimentation
+- approach to experimentation
+- reusability in experimentation
+
+## [Chapter 6: Testing and Evaluating a project](./06_testing_eval.md)
