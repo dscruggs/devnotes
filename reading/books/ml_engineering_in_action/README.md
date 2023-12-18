@@ -82,3 +82,13 @@ Topics include:
 - reusability in experimentation
 
 ## [Chapter 6: Testing and Evaluating a project](./06_testing_eval.md)
+
+Goes through in detail how you should approach experimentation and evaluation during your rapid experimentation phase. Also gives some great questions to ask while planning the transition into development afterwards. Takeaways are to be consistent in all your experimentation methods, and wholistic in your evaluation, using a variety of visualizations and metrics outside of pure model performance
+
+Topics include:
+
+- experimentation process
+- evaluation approach
+- planning development once an approach is selected
+
+## [Chapter 7: Testing and Evaluating a project](./06_testing_eval.md)
