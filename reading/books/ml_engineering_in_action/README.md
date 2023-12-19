@@ -12,7 +12,11 @@ Nice words of advice given by Ben:
 
 This book is split into 3 parts with chapters within each. I want to keep the chapters as the main visual sections, so I'm just going to bold the sections.
 
+--------------------------------------------
+
 **Part 1: An Introduction to Machine Learning Engineering**  
+
+Goes over the begginning phases of ML projects: ideation, planning, scoping, and experimentation. The keys here are focusing on the **What** over the **how** initially, constant communication, and speed in arriving at a working solution early on
 
 ## [Chapter 1: An Introduction to Machine Learning Engineering](./01_what_is_mle.md)
 
@@ -91,4 +95,37 @@ Topics include:
 - evaluation approach
 - planning development once an approach is selected
 
-## [Chapter 7: Testing and Evaluating a project](./06_testing_eval.md)
+## [Chapter 7: Moving from Prototype to MVP](./07_moving_to_mvp.md)
+
+This chapter is all about model hyperparameter tuning. It goes over the tuning methods themselves and some technologies and methods to help speed up and distribute tuning jobs
+
+Topics include:
+
+- hyperparameter tuning methods / libraries
+- Apache Spark for hyperparameter tuning in a distributed / parallel fashion
+
+## [Chapter 8: Finalizing an MVP with MLflow and runtime optimization](./08_finalizing_mvp.md)
+
+This chapter covers logging, monitoring, development patterns, and infrastructure
+
+The main takeaways are to track everything possible, choose your infrastructure wisely in a way that supports cost, stability, and ease of use, and only increase complexity when there's tangible benefits
+
+Topics include:
+
+- ML logging
+  - MLflow specifics
+- scaling and concurrency
+
+--------------------------------------------
+
+**Part 2: Preparing for production: Creating maintainable ML**  
+
+Focuses on the ML coding and solution itself. Focuses on building fundamentals to achieve:
+
+- Code that runs well
+- Code that is testable and able to be debugged
+- A solution that can be modified easily
+- A solution that can be evaluated for performance (based on whether it solves the problem well and continues to solve the problem it set out to solve)
+- A solution that you don’t regret building
+
+## [Chapter 9: Modularity for ML: Writing testable and legible code](./09_testable_legible_code.md)
