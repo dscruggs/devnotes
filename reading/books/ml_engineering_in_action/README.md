@@ -129,3 +129,13 @@ Focuses on the ML coding and solution itself. Focuses on building fundamentals t
 - A solution that you don’t regret building
 
 ## [Chapter 9: Modularity for ML: Writing testable and legible code](./09_testable_legible_code.md)
+
+This chapter covers some good code practices (pretty basic stuff for software engineers) related to modular and test-driven development
+
+Topics inlcude:
+
+- monolithic scripts / codebases and their drawbacks
+- how to think about modular codebases
+- test driven development / testing best practices
+
+## [Chapter 10: Standards of coding and creating maintainable ML code](./10_maintainable_ml_code.md)
