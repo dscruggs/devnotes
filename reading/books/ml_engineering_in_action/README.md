@@ -152,3 +152,14 @@ Topics include:
 - nested logic / business rules
 
 ## [Chapter 11: Model measurement and why it's so important](./11_model_measurement.md)
+
+Covers attribution, measurement of model results, and how to do different statistical tests to determine significance of results
+
+Topics include:
+
+- model attribution
+- statistical significance tests
+- A/B testing, Design of experiments
+- how to determine the "right metrics" for a model
+
+## [Chapter 12: Holding on to your gains by watching for drift](./12_model_drift.md)
