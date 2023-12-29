@@ -139,3 +139,16 @@ Topics inlcude:
 - test driven development / testing best practices
 
 ## [Chapter 10: Standards of coding and creating maintainable ML code](./10_maintainable_ml_code.md)
+
+Goes over problematic implementation patterns in ML codebases, and how to handle many common problems with them
+
+Topics include:
+
+- code smells
+- naming conventions and code structure
+- return handlings
+- error / exception handling
+- mutability in python
+- nested logic / business rules
+
+## [Chapter 11: Model measurement and why it's so important](./11_model_measurement.md)
