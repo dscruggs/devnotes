@@ -1,4 +1,4 @@
-# Personal Notes
+# Personal Development Notes
 
 Project to hold all my notes and learnings from my software and ML resources and work. I'm a ML engineer so this is mainly focused on ML, but am learning full stack development and other things so there's some of that as well.
 
