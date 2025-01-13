@@ -2,10 +2,32 @@
 
 Overall take on Go so far is it's a nice combination of low level capabilities with simple syntax and concepts. Interface and concurrency concepts are interesting.
 
-## Quick links
+[My example go project](https://github.com/dscruggs/go-hello-world)
 
-[Go tour](https://go.dev/tour)  
-[Go cheat sheet](https://devhints.io/go)
+## Helpful Go Tips and Commands
+
+### Common Go Commands
+- `go run <file.go>` - Compile and run a Go program
+- `go build` - Compile packages and dependencies
+- `go test` - Run tests in current directory
+- `go get <package>` - Download and install packages
+- `go mod init <module-name>` - Initialize a new module
+- `go mod tidy` - Add missing and remove unused modules
+- `go fmt` - Format Go source code
+- `go vet` - Report likely mistakes in packages
+- `go doc <package>` - Show documentation for package
+
+### Useful Resources
+1. **Official Resources**:
+   - [Go Documentation](https://golang.org/doc/)
+   - [Go Tour](https://tour.golang.org/)
+   - [Go by Example](https://gobyexample.com/)
+   - [Effective Go](https://golang.org/doc/effective_go)
+
+2. **Community Resources**:
+   - [Go Wiki](https://github.com/golang/go/wiki)
+   - [Awesome Go](https://awesome-go.com/) - Curated list of Go frameworks and libraries
+   - [Go cheat sheet](https://devhints.io/go)
 
 ## Basics
 
