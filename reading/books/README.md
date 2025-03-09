@@ -1,8 +1,8 @@
-# Machine Learning Books
+# Books
 
-This is where I keep notes on all machine-learning related books I read.
+This is where I keep notes on all technical books I read.
 
-Links to any notes I took on GitHub while reading can be accessed by clicking on a book title. Links to purchase or a free PDF (if available) are included
+Links to any notes I took on GitHub while reading can be accessed by clicking on a book title. They're grouped by theme. Links to purchase or a free PDF (if available) are included
 
 Progress:
 
@@ -10,7 +10,28 @@ Progress:
 - :blue_book: - In Progress
 - :white_check_mark: - Complete
 
-## Algorithms
+## General Software Engineering
+
+### Computer Fundatmentals
+
+| Book | Progress | Summary | Link to Book |
+|:-----|:--------:|:----------|:-----:|
+| Computer Systems: A Programmer's Perspective | :blue_book: | Explores what's going on "under the hood" of computer systems for computer scientists | [Link](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) |
+
+### Data Engineering
+
+| Book | Progress | Summary | Link to Book |
+|:-----|:--------:|:----------|:-----:|
+| Building Data Intensive Applications | :date: | | [Link](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) |
+| Database Internals | :date: | | [Link](https://www.databass.dev/) |
+
+### DevOps / Agile Principles
+
+| Book | Progress | Summary | Link to Book |
+|:-----|:--------:|:----------|:-----:|
+| The DevOps Handbook: How to Create World-Class Agility, Reliability, & Security in Technology Organizations | :white_check_mark: | Good high level overview on principles and benefits of DevOps. Lots of example cases from the real world | [Link](https://www.oreilly.com/library/view/the-devops-handbook/9781457191381/) |
+
+## Machine Learning
 
 ### Basic AI/ML
 
@@ -37,26 +58,11 @@ Progress:
 | [Grokking Deep Learning](./trask_deep_learning/) | :white_check_mark: | Lots of intuitive explanations on deep learning with heavy emphasis on building neural nets from scratch. Uses python so nice | [Link](https://www.manning.com/books/grokking-deep-learning) |
 | The Little Book of Deep Learning| :white_check_mark: | Great little reference from basics to network architectures | [Link](https://fleuret.org/public/lbdl.pdf) |
 
-## DevOps
-
-### DevOps / Agile Principles
-
-| Book | Progress | Summary | Link to Book |
-|:-----|:--------:|:----------|:-----:|
-| The DevOps Handbook: How to Create World-Class Agility, Reliability, & Security in Technology Organizations | :white_check_mark: | Good high level overview on principles and benefits of DevOps. Lots of example cases from the real world | [Link](https://www.oreilly.com/library/view/the-devops-handbook/9781457191381/) |
-
-### Data Engineering
-
-| Book | Progress | Summary | Link to Book |
-|:-----|:--------:|:----------|:-----:|
-| Building Data Intensive Applications | :date: | | [Link](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) |
-| Database Internals | :date: | | [Link](https://www.databass.dev/) |
-
 ### MLOps / ML Engineering
 
 | Book | Progress | Summary | Link to Book |
 |:-----|:--------:|:----------|:-----:|
 | [Designing Machine Learning Systems](./designing_ml_systems) | :white_check_mark: | Good high level book that connects a lot of concepts for building ML systems. No exercises or many specifics. For those who already know ML algorithms | [Link](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) |
-| [Practical MLOps](./practical_mlops) | :blue_book: |  | [Link](https://www.oreilly.com/library/view/practical-mlops/9781098103002/) |
+| [Practical MLOps](./practical_mlops) | :white_check_mark: |  | [Link](https://www.oreilly.com/library/view/practical-mlops/9781098103002/) |
 | Machine Learning Design Patterns | :date: |  | [Link](https://www.oreilly.com/library/view/machine-learning-design/9781098115777/) |
-|[Machine Learning Engineering in Action](./ml_engineering_in_action) | :blue_book: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
+|[Machine Learning Engineering in Action](./ml_engineering_in_action) | :white_check_mark: |  | [Link](https://www.manning.com/books/machine-learning-engineering-in-action) |
