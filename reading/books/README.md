@@ -16,7 +16,7 @@ Progress:
 
 | Book | Progress | Summary | Link to Book |
 |:-----|:--------:|:----------|:-----:|
-| Computer Systems: A Programmer's Perspective | :blue_book: | Explores what's going on "under the hood" of computer systems for computer scientists | [Link](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) |
+| [Computer Systems: A Programmer's Perspective](./csapp) | :blue_book: | Explores what's going on "under the hood" of computer systems for computer scientists | [Link](https://www.amazon.com/Computer-Systems-Programmers-Perspective-3rd/dp/013409266X) |
 
 ### Data Engineering
 
