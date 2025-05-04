@@ -4,9 +4,22 @@ by Randal E. Bryant and David R. O’Hallaron
 
 Lots of great info on the website <https://csapp.cs.cmu.edu/>
 
-## Chapter 1: A tour of computer systems
+### [Chapter 1: A tour of computer systems](./01_tour_of_comp_sys.md)
 
-## Chapter 2: Representing and Manipulating Information
+Goes over the basics of computer systems and how they work.
+
+Major takeaways:
+
+- Hardware and software are complementary to making systems work
+- Abstractions are important to simplify using the systems
+- I/O is the bottleneck for most systems, not CPU ops
+- Storage devices have hierarchies because larger storage is slower and more expensive
+- OS serves as intermediary between software and hardware
+- Networking is just another I/O device for computers to communicate with each other
+
+## Part 1: Program Structure and Execution
+
+### [Chapter 2: Representing and Manipulating Information](./02_representing_and_manipulating_info.md)
 
 ## Chapter 3: Machine-Level Representation of Programs
 
