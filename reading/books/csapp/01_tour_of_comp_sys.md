@@ -154,5 +154,14 @@ A system can think of a network as **just another I/O device**. It copies a sequ
 - `Single-Instruction, Multiple-Data` (SIMD) is a technique that allows a processor to execute the same instruction on multiple data items at the same time.
   - Very applicable to graphics processing and for video, images, and sound.
   - Example would be adding 8 pairs of floating point numbers at once.
-  - GCC vector types are an example of a data type that allows for SIMD operations
-  
+  - GCC vector types are an example of a data type that allows for SIMD operations. I think numpy might also use this for "vectorized" operations?
+
+#### Importance of Abstractions
+
+Computers and programs are hard. Abstractions help you to use the systems without having to worry about all the details.
+
+Abstractions provided by computer systems:
+
+- `instruction set architecture`: the set of instructions that a processor can execute.
+- We went over OS abstractions earlier
+- `Virtual machine` - an abstraction of a entire computer
