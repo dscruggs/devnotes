@@ -21,6 +21,13 @@ Major takeaways:
 
 ### [Chapter 2: Representing and Manipulating Information](./02_representing_and_manipulating_info.md)
 
+Covers data types and details and integer and floating point computation
+
+- computers encode information as sequences of bits, usually organized into bytes/words. Different computers use different encodings to represent those into things like integers, real numbers, and characters
+- goes into details on representations for integers, characters, and floating point numbers
+- be aware of two's complement and floating point ops implications on computations
+- In C when you cast there's not a whole lot of actually transformations happening under the hood just telling the machine to interpret the bits differently. Exception is when converting from higher to lower precision numbers
+
 ## Chapter 3: Machine-Level Representation of Programs
 
 ## Chapter 4: Processor Architecture
