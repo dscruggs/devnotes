@@ -2,9 +2,157 @@
 
 Split into **client** (making requests) and **server** (building APIs) sections.
 
+**Big picture:** [How a request travels](#how-a-request-actually-travels)
+
 **Client:** [Why HTTP](#why-http) · [JSON](#json) · [DNS](#dns) · [URIs](#uris) · [Headers](#headers) · [HTTP Methods](#http-methods) · [Paths](#paths) · [HTTPS](#https)
 
 **Server:** [Servers](#servers) · [JSON (server)](#json-1) · [Error handling](#error-handling) · [Storage](#storage) · [Authentication](#authentication) · [Authorization](#authorization) · [Webhooks](#webhooks)
+
+---
+
+## How a request actually travels
+
+### Layers
+
+When one program talks to another over the network, there's a stack of stuff involved. Rough order from bottom to top:
+
+```
+physical network (wifi, ethernet, datacenter)
+IP address (which machine — 54.123.45.67 or 10.0.1.5)
+TCP (connection to IP:port)
+TLS (encryption, HTTPS only)
+HTTP (GET /users, headers, body, 200 OK, etc.)
+your handler code
+```
+
+- `IP address` = which computer
+- `port` = which program on that computer. Only one program per port on a machine
+- `TCP` = opens a connection between client and server on those IP:ports
+- `TLS` = encrypts the connection for HTTPS
+- `HTTP` = the request/response format sent over the connection
+- `your handler` = the code that actually runs when the server receives the request (query DB, return JSON, etc.)
+
+### Public vs private traffic
+
+- **public traffic** goes over the internet. Uses public IP addresses (cost money, routable worldwide). Public DNS maps something like `api.example.com` to one of those IPs
+- **private traffic** stays inside some boundary — your laptop, a docker network, a k8s cluster, an AWS VPC. Uses private IPs (`10.x`, `172.x`, `192.168.x`, `127.x`)
+- private traffic doesn't go through the public internet
+- databases and internal services are usually private. Websites and user-facing APIs need a public entry point somewhere
+- k8s pods run on a private network by default — they can see other resources in the cluster but not the outside world unless you expose something via a LoadBalancer or Gateway
+- AWS private subnets don't have direct inbound from the internet unless you set that up (internet gateway, route tables, etc. — see [aws.md](aws.md))
+
+### Same computer (localhost)
+
+- `localhost` or `127.0.0.1` = this computer
+- client program connects to a port, server program is already listening on that port
+- OS delivers the connection to whatever is listening
+- no DNS, no internet
+- server parses the HTTP request, handler runs, maybe reads a local file or sqlite, sends response back
+
+```mermaid
+flowchart LR
+    Client["client program"]
+    OS["OS"]
+    Server["server on :8080"]
+    DB["local file / sqlite"]
+
+    Client --> OS --> Server --> DB --> Server --> Client
+```
+
+### Private traffic (service to service)
+
+Same idea as localhost but the boundary is bigger.
+
+**k8s (SynergyChat-style):**
+- web pod calls API at `http://synchatapi.internal` or via ClusterIP service
+- API calls crawler at `http://crawler-service.crawler` (cross-namespace internal DNS)
+- packets stay inside the cluster, never hit the public internet
+- crawler and DB aren't exposed to users — only web/API go through the Gateway or LoadBalancer
+
+**AWS-style:**
+- app servers in a private subnet (IP like `10.0.2.15`)
+- database in another private subnet (`10.0.3.8`)
+- security groups say only the app tier can connect to the DB on port 5432. Internet can't reach the DB directly
+- app talks to DB over private IPs. Usually postgres/redis protocol here, not HTTP, but same idea for routing
+
+**docker:**
+- common setup: load balancer exposed to public internet, application servers only reachable via the load balancer
+
+```mermaid
+flowchart LR
+    API["API pod / app server"]
+    Crawler["crawler service"]
+    DB["database"]
+
+    API --> Crawler
+    API --> DB
+```
+
+### Public traffic (user on the internet)
+
+When someone hits your API or website from outside, more stuff is in the path:
+
+1. browser/app sends request to `https://api.example.com/users`
+2. DNS resolves `api.example.com` to a public IP. Often this is a load balancer, not your app directly
+3. packets go wifi → router → ISP → internet → your cloud region
+4. load balancer / gateway receives it (ALB, k8s Gateway, Cloudflare, etc.)
+    - usually terminates TLS here (decrypts HTTPS)
+    - routes to the right service, load balances across instances
+5. reverse proxy might sit in front of your app (nginx, Envoy, Traefik) — routing, static files, rate limits. Forwards to your app on an internal port
+6. your app server receives the HTTP request (Express, Go `net/http`, etc.). Usually on a private IP like `10.0.2.15:8080` even though users reach it publicly — the LB forwards to it
+7. handler runs
+8. handler might call DB, cache, or other services over private addresses. User doesn't see any of this
+9. response goes back through the same chain in reverse
+
+```mermaid
+flowchart TB
+    User["user browser / app"]
+    DNS["public DNS"]
+    Internet["internet"]
+    LB["load balancer / gateway"]
+    Proxy["reverse proxy"]
+    App["app server"]
+    DB["database"]
+    Internal["other internal services"]
+
+    User --> DNS
+    User --> Internet --> LB --> Proxy --> App
+    App --> DB
+    App --> Internal
+    App --> Proxy --> LB --> Internet --> User
+```
+
+You usually don't want your app process directly on the public internet. LB/proxy sits in front, app and DB sit behind on a private network. Security groups / firewalls control who can connect to what.
+
+### Serving public vs keeping things private
+
+**Public (users need to reach it):**
+- DNS points to load balancer public IP
+- LB in public subnet or managed LB with public IP
+- security group allows inbound 443 from internet to LB
+- LB forwards to app on private IP
+
+**Private (only your infra should reach it):**
+- DB, crawlers, internal APIs, service-to-service calls
+- private subnet or k8s ClusterIP, no public IP
+- security group allows port 5432 only from app security group, not from `0.0.0.0/0`
+
+**Typical prod setup:**
+```
+internet → load balancer (public) → app servers (private) → database (private)
+```
+
+Users hit the load balancer. They can't reach the app or DB directly.
+
+### Other notes
+
+- client and server are just roles — your laptop can be either, a k8s pod can call another pod (client) while also serving requests (server)
+- listening on a port = your program told the OS to deliver connections on that port to it
+- a reverse proxy receives requests on behalf of backend servers (see [docker.md](docker.md) proxies section)
+- internal DNS in k8s (`crawler-service.crawler.svc.cluster.local`) works like public DNS but only inside the cluster
+- HTTP is stateless — server doesn't remember you unless you send cookies, auth headers, etc.
+
+Sections below go into DNS, URIs, headers, methods. See [kubernetes.md](kubernetes.md) for services/gateways and [aws.md](aws.md) for VPCs/subnets.
 
 ---
 
