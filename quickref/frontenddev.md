@@ -237,3 +237,5 @@ A few things to note:
 - It's a pass-by-value language for the most part
 
 [Javascript mdn web docs reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+
+More detailed JS/TS notes: [javascript.md](./javascript.md)
